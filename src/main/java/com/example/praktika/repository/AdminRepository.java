@@ -20,18 +20,18 @@ public class AdminRepository implements IAdminRepository {
     ObjectMapper objectMapper = new ObjectMapper();
     private Gson gson;
 
-    private final AtomicInteger lastId = new AtomicInteger(getLastId());
+    private final AtomicInteger lastId = new AtomicInteger(getLastAdminId());
 
     public int generateId() {
         return lastId.incrementAndGet();
     }
 
 
-    public AdminRepository() throws JsonProcessingException {
+    /*public AdminRepository() throws JsonProcessingException {
         this.gson = gson;
-    }
+    }*/
 
-    private int getLastId() throws JsonProcessingException{
+    /*private int getLastId() throws JsonProcessingException{
         var list = new ArrayList<AdminEntity>();
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(FILE_PATH));
@@ -45,7 +45,24 @@ public class AdminRepository implements IAdminRepository {
         }
         return -1;
     }
+*/
 
+    public int getLastAdminId(){
+        int lastId = -1;
+
+        try {
+            File file = new File(FILE_PATH);
+            List<AdminEntity> admins = objectMapper.readValue(file, new TypeReference<List<AdminEntity>>() {});
+
+            if(!admins.isEmpty()){
+                AdminEntity lastAdmin = admins.get(admins.size() - 1);
+                lastId = lastAdmin.getId();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lastId;
+    }
 
     @Override
     public AdminEntity findByUsername(String username) {
