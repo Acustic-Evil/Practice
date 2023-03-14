@@ -2,6 +2,7 @@ package com.example.praktika.config;
 
 import com.example.praktika.entity.AdminEntity;
 import com.example.praktika.repository.AdminRepository;
+import com.example.praktika.repository.IAdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,7 +17,7 @@ import java.util.List;
 @Service
 public class UserDetailsServiceConfig implements UserDetailsService {
     @Autowired
-    private AdminRepository adminRepository;
+    private IAdminRepository adminRepository;
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
