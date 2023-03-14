@@ -3,7 +3,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-!**/main/admins.json
+!**/src/main/admins.json
 
 ### STS ###
 .apt_generated
