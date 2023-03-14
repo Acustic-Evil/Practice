@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin Page - Bowed Musical Instruments</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <script src="../static/script.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Admin Page - Bowed Musical Instruments</h1>
+    </header>
+    <p><button><a href="/"> Main page</a></button></p>
+    <p><button><a href="/admin/sign_up">Sign Up a new Admin</a></button></p>
+    <p><button onclick="toggleDarkMode()">Toggle Dark Mode</button></p>
+    <main>
+      <section>
+        <h2 style="text-align: center;">Add Instrument</h2>
+        <form action="/data" method="post">
+          <label for="instrument-name">Name:</label>
+          <input type="text" id="instrument-name" name="instrument-name" required>
+          <button type="submit">Add</button>
+        </form>
+      </section>
+      <section>
+        <h2 style="text-align: center;">Add Chord</h2>
+        <form>
+          <label for="chord-name">Name:</label>
+          <input type="text" id="chord-name" name="chord-name" required>
+          <button type="submit">Add</button>
+        </form>
+      </section>
+      <section>
+        <h2 style="text-align: center;">Instruments</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>instrument 1</td>
+              <td>
+                <button>Edit</button>
+                <button>Delete</button>
+              </td>
+            </tr>
+            <!-- Repeat this row for each instrument in the database -->
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <h2 style="text-align: center;">Chords</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Chord 1</td>
+              <td>
+                <button>Edit</button>
+                <button>Delete</button>
+              </td>
+            </tr>
+            <!-- Repeat this row for each chord in the database -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>
