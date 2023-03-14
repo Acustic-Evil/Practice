@@ -1,24 +1,34 @@
 package com.example.praktika.repository;
 
 import com.example.praktika.entity.AdminEntity;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import java.io.Console;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Logger;
 
 @Repository
 public class AdminRepository implements IAdminRepository {
     private final String FILE_PATH = "src/main/data.json";
     ObjectMapper objectMapper = new ObjectMapper();
+    private final AtomicInteger lastId = new AtomicInteger(1);
+    public int generateId() {
+        return lastId.incrementAndGet();
+    }
+
     public AdminRepository() throws JsonProcessingException{
     }
 
@@ -37,10 +47,6 @@ public class AdminRepository implements IAdminRepository {
         return existingAdmin.get(existingAdmin.size() - 1).getId();
     }
 
-    private final AtomicInteger lastId = new AtomicInteger(0);
-    public int generateId() {
-        return lastId.incrementAndGet();
-    }
 
     @Override
     public AdminEntity findByUsername(String username) {
@@ -54,27 +60,16 @@ public class AdminRepository implements IAdminRepository {
         }
     }
 
+    @Override
     public List<AdminEntity> findAllAdmins() {
-        List<AdminEntity> admins = new ArrayList<>();
-
+        ObjectMapper mapper = new ObjectMapper();
         try {
-            List<AdminEntity> existingAdmin = objectMapper.readValue(FILE_PATH, new TypeReference<>() {});
-
-            // Find the last ID value from the existing JSON data
-            int lastId = 0;
-            for (AdminEntity admin : existingAdmin) {
-                if (admin.getId() > lastId) {
-                    lastId = admin.getId();
-                    admin.setId(lastId);
-                }
-            }
-            // Add all the existing people to the list
-            admins.addAll(existingAdmin);
+            return mapper.readValue(new File(FILE_PATH), new TypeReference<>() {
+            });
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
-
-        return admins;
     }
 
     @Override

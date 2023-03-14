@@ -17,19 +17,18 @@ import java.util.List;
 @Service
 public class UserDetailsServiceConfig implements UserDetailsService {
     @Autowired
-    private IAdminRepository adminRepository;
+    private AdminRepository adminRepository;
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         System.out.println(login);
-        AdminEntity adminSystem = adminRepository.findByUsername(login);
-        if(adminSystem == null){
-            throw new UsernameNotFoundException("User not authorized.");
+        AdminEntity admin = adminRepository.findByUsername(login);
+        if (admin != null) {
+            GrantedAuthority authority = new SimpleGrantedAuthority(admin.getRole());
+            UserDetails userDetails = new User(admin.getUsername(), admin.getPassword(), List.of(authority));
+            System.out.println(userDetails.getUsername() + ":" + userDetails.getPassword() + ". Role" + userDetails.getAuthorities());
+            return userDetails;
         }
-        GrantedAuthority authority = new SimpleGrantedAuthority(adminSystem.getRole());
-        UserDetails  userDetails = new User(adminSystem.getUsername(),adminSystem.getPassword(), List.of(authority));
-
-        System.out.println(userDetails.getUsername() +":"+userDetails.getPassword()+". Role"+userDetails.getAuthorities());
-        return userDetails;
+        throw new UsernameNotFoundException("User not authorized.");
     }
 }

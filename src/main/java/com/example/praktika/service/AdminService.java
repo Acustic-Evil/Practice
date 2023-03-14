@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AdminService {
+public class AdminService implements IAdminService{
     @Autowired
     private IAdminRepository adminRepository;
 
