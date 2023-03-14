@@ -9,4 +9,9 @@ public class MainPage {
     public String getMainPage() {
         return "index";
     }
+
+    @GetMapping("/sign_in")
+    public String getSignInPage(){
+        return "sign_in";
+    }
 }

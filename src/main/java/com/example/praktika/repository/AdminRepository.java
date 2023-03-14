@@ -1,14 +1,10 @@
 package com.example.praktika.repository;
 
 import com.example.praktika.entity.AdminEntity;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import org.springframework.stereotype.Repository;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -16,36 +12,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class AdminRepository implements IAdminRepository {
-    private final String FILE_PATH = "src/main/data.json";
+    private final String FILE_PATH = "src/main/admins.json";
     ObjectMapper objectMapper = new ObjectMapper();
-    private Gson gson;
 
     private final AtomicInteger lastId = new AtomicInteger(getLastAdminId());
 
     public int generateId() {
         return lastId.incrementAndGet();
     }
-
-
-    /*public AdminRepository() throws JsonProcessingException {
-        this.gson = gson;
-    }*/
-
-    /*private int getLastId() throws JsonProcessingException{
-        var list = new ArrayList<AdminEntity>();
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(FILE_PATH));
-            list = gson.fromJson(bufferedReader, new TypeToken<List<AdminEntity>>() {
-            }.getType());
-            bufferedReader.close();
-            System.out.println("Lighting objects have been read from " + FILE_PATH + "file.");
-            return list.get(list.size()-1).getId();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return -1;
-    }
-*/
 
     public int getLastAdminId(){
         int lastId = -1;

@@ -6,27 +6,24 @@
     <link rel="stylesheet" href="../static/style.css">
     <script src="../static/script.js"></script>
 </head>
-<body class="light-mode">
+<body>
 <div id="alert">Error: Incorrect username or password</div>
 <h1>Sign In</h1>
+<form action="/sign_in" method="post">
+    <div>
+        <label>Username:
+            <input type="text" name="username">
+        </label>
+        <label>Password:
+            <input type="password" name="password">
+        </label>
+        <input type="submit" value="Вход">
+    </div>
+</form>
 
-<div>
-    <label for="username">Username:</label>
-    <input type="text" id="username">
-</div>
-
-<div>
-    <label for="password">Password:</label>
-    <input type="password" id="password">
-</div>
-
-<div>
-    <button>Sign In</button>
-</div>
-
-<p><button onclick="toggleDarkMode()">Toggle Dark Mode</button></p>
-
-
+<p>
+    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+</p>
 
 </body>
 </html>

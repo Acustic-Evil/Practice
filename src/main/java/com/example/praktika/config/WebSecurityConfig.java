@@ -22,11 +22,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-                /*.antMatchers("/admin/**").hasAuthority("admin")*/
+                .antMatchers("/admin/**").hasAuthority("admin")
                 .antMatchers("/").not().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/")
+                .loginPage("/sign_in")
                 .defaultSuccessUrl("/admin")
                 .permitAll()
                 .and()
