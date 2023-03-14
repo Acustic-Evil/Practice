@@ -5,14 +5,13 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-
-import java.io.Console;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,27 +23,32 @@ import java.util.logging.Logger;
 public class AdminRepository implements IAdminRepository {
     private final String FILE_PATH = "src/main/data.json";
     ObjectMapper objectMapper = new ObjectMapper();
-    private final AtomicInteger lastId = new AtomicInteger(1);
+    private Gson gson;
+
+    private final AtomicInteger lastId = new AtomicInteger(getLastId());
+
     public int generateId() {
         return lastId.incrementAndGet();
     }
 
-    public AdminRepository() throws JsonProcessingException{
+
+    public AdminRepository() throws JsonProcessingException {
+        this.gson = gson;
     }
 
-    public Integer findLastId() throws JsonProcessingException {
-
-        List<AdminEntity> existingAdmin = objectMapper.readValue(FILE_PATH, new TypeReference<List<AdminEntity>>() {}).stream().toList();
-/*        int lastId = 0;
-        for (AdminEntity admin : existingAdmin) {
-            if (admin.getId() > lastId) {
-                lastId = admin.getId();
-
-            }
+    private int getLastId() throws JsonProcessingException{
+        var list = new ArrayList<AdminEntity>();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(FILE_PATH));
+            list = gson.fromJson(bufferedReader, new TypeToken<List<AdminEntity>>() {
+            }.getType());
+            bufferedReader.close();
+            System.out.println("Lighting objects have been read from " + FILE_PATH + "file.");
+            return list.get(list.size()-1).getId();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return lastId + 1;*/
-        int i = 0;
-        return existingAdmin.get(existingAdmin.size() - 1).getId();
+        return -1;
     }
 
 
@@ -52,7 +56,8 @@ public class AdminRepository implements IAdminRepository {
     public AdminEntity findByUsername(String username) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            List<AdminEntity> admins = objectMapper.readValue(new File(FILE_PATH), new TypeReference<>() {});
+            List<AdminEntity> admins = objectMapper.readValue(new File(FILE_PATH), new TypeReference<>() {
+            });
             return admins.stream().filter(a -> a.getUsername().equals(username)).findFirst().orElse(null);
         } catch (IOException e) {
             e.printStackTrace();
@@ -75,7 +80,8 @@ public class AdminRepository implements IAdminRepository {
     @Override
     public void save(AdminEntity admin) {
         try {
-            List<AdminEntity> admins = objectMapper.readValue(new File(FILE_PATH), new TypeReference<>() {});
+            List<AdminEntity> admins = objectMapper.readValue(new File(FILE_PATH), new TypeReference<>() {
+            });
             if (admin.getId() == null) {
                 admin.setId(generateId());
             }
