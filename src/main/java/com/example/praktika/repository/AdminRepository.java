@@ -10,7 +10,7 @@ public interface AdminRepository {
 
     AdminEntity findByUsername(String username);
 
-    List<AdminEntity> findAll();
+    List<AdminEntity> findAllAdmins();
 
     void save(AdminEntity admin);
     void update(AdminEntity admin);

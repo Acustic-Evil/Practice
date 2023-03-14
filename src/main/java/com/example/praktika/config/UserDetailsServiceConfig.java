@@ -1,4 +1,4 @@
-package com.example.praktika.service;
+package com.example.praktika.config;
 
 import com.example.praktika.entity.AdminEntity;
 import com.example.praktika.repository.AdminRepository;

@@ -29,7 +29,7 @@ public class AdminRepoImpl implements AdminRepository {
     }
 
     @Override
-    public List<AdminEntity> findAll() {
+    public List<AdminEntity> findAllAdmins() {
         ObjectMapper mapper = new ObjectMapper();
         try {
             return mapper.readValue(new File(FILE_PATH), new TypeReference<>() {
@@ -42,7 +42,7 @@ public class AdminRepoImpl implements AdminRepository {
 
     @Override
     public void save(AdminEntity admin) {
-        List<AdminEntity> admins = findAll();
+        List<AdminEntity> admins = findAllAdmins();
         admins.add(admin);
         ObjectMapper mapper = new ObjectMapper();
         try {
@@ -54,7 +54,7 @@ public class AdminRepoImpl implements AdminRepository {
 
     @Override
     public void update(AdminEntity admin) {
-        List<AdminEntity> persons = findAll();
+        List<AdminEntity> persons = findAllAdmins();
         for (int i = 0; i < persons.size(); i++) {
             if (Objects.equals(persons.get(i).getId(), admin.getId())) {
                 persons.set(i, admin);
@@ -72,7 +72,7 @@ public class AdminRepoImpl implements AdminRepository {
 
     @Override
     public void delete(int id) {
-        List<AdminEntity> persons = findAll();
+        List<AdminEntity> persons = findAllAdmins();
         persons.removeIf(person -> person.getId() == id);
         ObjectMapper mapper = new ObjectMapper();
         try {
