@@ -1,6 +1,10 @@
 package com.example.praktika.entity;
 
+
 public class AdminEntity {
+
+
+
     private Integer id;
     private String role;
     private String username;

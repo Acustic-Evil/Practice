@@ -3,20 +3,34 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../static/style.css">
-   <title>ADMIN | SIGN UP</title>
+    <title>ADMIN | SIGN UP</title>
 </head>
-    <body>
-        <div class="intro"></div>
-            <form action="/admin/sign_up" id="modalWin" class="modal" method="post">
-                <div class="modal-window">
-                    <a class="close2" href="/admin">&#10006;</a>
-                    <div class="main_title form">Регистрация администратора</div>
-                    <input type="text" placeholder="Введите никнейм" name="username">
-                    <input  type="password" placeholder="Введиете пароль" name="password">
-                    <input type="submit" class="link-btn" value="Зарегистрировать">
-                </div>
-                <div  class="over" ></div>
-            </form>
-    </body>
-
+<body>
+<div class="intro"></div>
+<form action="/admin/sign_up" id="modalWin" class="modal" method="post">
+    <div class="modal-window">
+        <a class="close2" href="/admin">&#10006;</a>
+        <div class="main_title form">Регистрация администратора</div>
+        <input type="text" placeholder="Введите никнейм" name="username">
+        <input type="password" placeholder="Введиете пароль" name="password">
+        <input type="submit" class="link-btn" value="Зарегистрировать">
+    </div>
+    <div class="over"></div>
+</form>
+<table>
+    <thead>
+    <tr style="border-bottom:1px solid black">
+        <th>Id</th>
+        <th>Username</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="border-bottom:1px solid black" th:each="AdminEntity: ${adminList}">
+        <td th:text="${AdminEntity.getId}"></td>
+        <td th:text="${AdminEntity.getUsername}"></td>
+        <td><a th:href="@{/admin/delete_admin/{id}(id=${AdminEntity.getId()})}">&Chi;</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
 </html>
