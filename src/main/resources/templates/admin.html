@@ -16,16 +16,16 @@
       <section>
         <h2 style="text-align: center;">Add Instrument</h2>
         <form action="/data" method="post">
-          <label for="instrument-name">Name:</label>
-          <input type="text" id="instrument-name" name="instrument-name" required>
-          <button type="submit">Add</button>
-        </form>
-      </section>
-      <section>
-        <h2 style="text-align: center;">Add Chord</h2>
-        <form>
-          <label for="chord-name">Name:</label>
-          <input type="text" id="chord-name" name="chord-name" required>
+          <label for="instrument-name">Instrument name:</label>
+          <input type="text" id="instrument-name" name="instrument_name" required>
+          <label for="chord-name">Chord name:</label>
+          <input type="text" id="chord-name" name="chord_name" required>
+          <label for="num-of-strings">Number of strings:</label>
+          <input type="text" id="num-of-strings" name="num_of_strings" required>
+          <label for="factory-name">Factory name:</label>
+          <input type="text" id="factory-name" name="factory_name" required>
+          <label for="factory-number">Factory number:</label>
+          <input type="text" id="factory-number" name="factory_number" required>
           <button type="submit">Add</button>
         </form>
       </section>

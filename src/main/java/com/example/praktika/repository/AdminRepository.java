@@ -25,8 +25,7 @@ public class AdminRepository implements IAdminRepository {
         int lastId = -1;
 
         try {
-            File file = new File(FILE_PATH);
-            List<AdminEntity> admins = objectMapper.readValue(file, new TypeReference<List<AdminEntity>>() {});
+            List<AdminEntity> admins = objectMapper.readValue(FILE_PATH, new TypeReference<List<AdminEntity>>() {});
 
             if(!admins.isEmpty()){
                 AdminEntity lastAdmin = admins.get(admins.size() - 1);
