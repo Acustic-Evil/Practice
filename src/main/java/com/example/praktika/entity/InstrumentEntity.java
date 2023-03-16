@@ -24,6 +24,14 @@ public class InstrumentEntity {
         this.factory_name = factory_name;
     }
 
+    public InstrumentEntity(Integer id, String instrument_name, Integer num_of_strings, String factory_number, String factory_name) {
+        this.id = id;
+        this.instrument_name = instrument_name;
+        this.num_of_strings = num_of_strings;
+        this.factory_number = factory_number;
+        this.factory_name = factory_name;
+    }
+
     public String getInstrument_name() {
         return instrument_name;
     }

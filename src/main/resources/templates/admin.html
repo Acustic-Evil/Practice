@@ -56,14 +56,14 @@
                 <td th:text="${InstEntity.getFactory_name}"></td>
                 <td th:text="${InstEntity.getFactory_number}"></td>
                 <td>
-                    <button>Edit</button>
-                    <button>Delete</button>
+                    <button><a th:href="@{/admin/edit_instrument/{id}(id=${InstEntity.getId()})}">✏️</a></button>
+                    <button><a th:href="@{/admin/delete_instrument/{id}(id=${InstEntity.getId()})}">❌</a></button>
                 </td>
             </tr>
             </tbody>
         </table>
     </section>
-    <section>
+<!--    <section>
         <h2 style="text-align: center;">Chords</h2>
         <table>
             <thead>
@@ -80,10 +80,10 @@
                     <button>Delete</button>
                 </td>
             </tr>
-            <!-- Repeat this row for each chord in the database -->
+            &lt;!&ndash; Repeat this row for each chord in the database &ndash;&gt;
             </tbody>
         </table>
-    </section>
+    </section>-->
 </main>
 </body>
 </html>

@@ -10,8 +10,12 @@
 <form action="/admin/sign_up" method="post">
     <div>
         <div>Регистрация администратора</div>
-        <input type="text" placeholder="Введите никнейм" name="username">
-        <input type="password" placeholder="Введиете пароль" name="password">
+        <label>
+            <input type="text" placeholder="Введите никнейм" name="username">
+        </label>
+        <label>
+            <input type="password" placeholder="Введиете пароль" name="password">
+        </label>
         <input type="submit" class="link-btn" value="Зарегистрировать">
     </div>
 </form>
@@ -26,7 +30,7 @@
     <tr th:each="AdminEntity: ${adminList}">
         <td th:text="${AdminEntity.getId}"></td>
         <td th:text="${AdminEntity.getUsername}"></td>
-        <td><a th:href="@{/admin/delete_admin/{id}(id=${AdminEntity.getId()})}">&Chi;</a></td>
+        <td><a th:href="@{/admin/delete_admin/{id}(id=${AdminEntity.getId()})}">❌</a></td>
     </tr>
     </tbody>
 </table>

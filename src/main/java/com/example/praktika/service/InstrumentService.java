@@ -21,7 +21,7 @@ public class InstrumentService implements IInstrumentService {
         if(!saveInstrument(new InstrumentEntity(instrument_name, num_of_strings, factory_number, factory_name))){
             return false;
         }
-        System.out.println("New Instrument: " + instrument_name + " " + num_of_strings + "\n" + factory_name + " : " + factory_number);
+        System.out.println("New Instrument: " + instrument_name + "Strings: " + num_of_strings + "\nFactory: " + factory_name + ":" + factory_number);
         return true;
     }
 
@@ -34,5 +34,15 @@ public class InstrumentService implements IInstrumentService {
         }
         instrumentRepository.save(instrument);
         return true;
+    }
+
+    @Override
+    public InstrumentEntity findById(int id) {
+        return instrumentRepository.findById(id);
+    }
+
+    @Override
+    public void delete(Integer id){
+        instrumentRepository.delete(id);
     }
 }

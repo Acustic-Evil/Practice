@@ -1,5 +1,6 @@
 package com.example.praktika.repository;
 
+import com.example.praktika.entity.AdminEntity;
 import com.example.praktika.entity.InstrumentEntity;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
@@ -74,12 +76,51 @@ public class InstrumentRepository implements IInstrumentRepository{
     public InstrumentEntity findByName(String instrument_name) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            List<InstrumentEntity> admins = objectMapper.readValue(new File(Ins_FILE_PATH), new TypeReference<>() {
+            List<InstrumentEntity> instruments = objectMapper.readValue(new File(Ins_FILE_PATH), new TypeReference<>() {
             });
-            return admins.stream().filter(a -> a.getInstrument_name().equals(instrument_name)).findFirst().orElse(null);
+            return instruments.stream().filter(a -> a.getInstrument_name().equals(instrument_name)).findFirst().orElse(null);
         } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public void update(InstrumentEntity instrument) {
+        List<InstrumentEntity> instruments = findAllInstruments();
+        for (int i = 0; i < instruments.size(); i++) {
+            if (Objects.equals(instruments.get(i).getId(), instrument.getId())) {
+                instruments.set(i, instrument);
+                break;
+            }
+        }
+        try {
+            objectMapper.writeValue(new File(Ins_FILE_PATH), instruments);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void delete(Integer id) {
+        List<InstrumentEntity> instruments = findAllInstruments();
+        instruments.removeIf(instrument -> Objects.equals(instrument.getId(), id));
+        System.out.println();
+        try {
+            objectMapper.writeValue(new File(Ins_FILE_PATH), instruments);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public InstrumentEntity findById(int id) {
+        List<InstrumentEntity> instruments = findAllInstruments();
+        for (InstrumentEntity instrument : instruments) {
+            if (instrument.getId() == id) {
+                return instrument;
+            }
+        }
+        return null;
     }
 }

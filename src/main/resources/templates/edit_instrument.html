@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Instrument</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <script src="../static/script.js"></script>
+</head>
+<body>
+<div class="popup-overlay"></div>
+<div class="popup">
+    <h2>Edit Instrument</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Instrument name</th>
+            <th>Number of strings</th>
+            <th>Factory name</th>
+            <th>Factory number</th>
+        </tr>
+        </thead>
+        <tbody>
+        <form>
+            <tr th:each="instrument: ${instrument}">
+                <td th:text="${instrument.getId}" name="id"></td>
+                <td><input th:value="${instrument.getInstrument_name}" type="text" name="instrument_name"></td>
+                <td><input th:value="${instrument.getNum_of_strings}" type="text" name="num_of_strings"></td>
+                <td><input th:value="${instrument.getFactory_name}" type="text" name="factory_name"></td>
+                <td><input th:value="${instrument.getFactory_number}" type="text" name="factory_number"></td>
+            </tr>
+            <tr>
+                <a th:href="@{/admin/edit_instrument/{id}(id=${instrument.getId})}">
+                    <button type="submit">Save Changes</button>
+                </a>
+            </tr>
+        </form>
+        </tbody>
+    </table>
+
+
+</div>
+</body>
+</html>
+

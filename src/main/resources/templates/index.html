@@ -32,7 +32,7 @@
                 <label for="instrument"></label>
                 <select id="instrument">
                     <option th:each = "InstrumentEntity: ${instrumentList}"
-                            th:value = "${InstrumentEntity.getId}"
+                            th:value = "${InstrumentEntity.getInstrument_name}"
                             th:text = "${InstrumentEntity.getInstrument_name}"></option>
                 </select>
                 <label for="chord"></label>
