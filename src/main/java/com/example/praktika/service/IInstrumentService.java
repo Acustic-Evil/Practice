@@ -16,4 +16,6 @@ public interface IInstrumentService {
     InstrumentEntity findById(int id);
 
     void delete(Integer id);
+
+
 }

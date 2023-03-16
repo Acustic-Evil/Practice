@@ -13,6 +13,6 @@ public interface IInstrumentRepository {
     InstrumentEntity findByName(String instrument_name);
 
     InstrumentEntity findById(int id);
-    void update(InstrumentEntity admin);
+    void update(InstrumentEntity instrument);
     void delete(Integer id);
 }

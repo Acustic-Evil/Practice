@@ -90,7 +90,7 @@ public class AdminPage {
                                  @RequestParam(value = "factory_name") String factory_name,
                                  @RequestParam(value = "factory_number") String factory_number) {
         InstrumentEntity instrument = new InstrumentEntity(id, instrument_name, num_of_strings, factory_number, factory_name);
-        instrumentRepository.update(instrument);
+        instrumentService.update(instrument);
         return "redirect:/admin";
     }
 }

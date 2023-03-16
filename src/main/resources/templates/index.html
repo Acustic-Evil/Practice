@@ -13,7 +13,8 @@
     <p>
         <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
     </p>
-    <button><a href="/admin"> Admin</a></button>
+    <button><a href="/admin">Admin</a></button>
+    <button><a href="/logout">Log out</a></button>
 </header>
 <main>
     <section>
@@ -27,28 +28,26 @@
     </section>
     <section>
         <h2>Select an Instrument and Chord</h2>
-        <form>
-            <div class="select-container">
-                <label for="instrument"></label>
-                <select id="instrument">
-                    <option th:each = "InstrumentEntity: ${instrumentList}"
-                            th:value = "${InstrumentEntity.getInstrument_name}"
-                            th:text = "${InstrumentEntity.getInstrument_name}"></option>
-                </select>
-                <label for="chord"></label>
-                <select id="chord">
-                    <option value="">Select a chord</option>
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                    <option value="D">D</option>
-                    <option value="E">E</option>
-                    <option value="F">F</option>
-                    <option value="G">G</option>
-                </select>
-                <button onclick="playSound()">Play</button>
-            </div>
-        </form>
+        <div class="select-container">
+            <label for="instrument"></label>
+            <select id="instrument">
+                <option th:each="InstrumentEntity: ${instrumentList}"
+                        th:value="${InstrumentEntity.getInstrument_name}"
+                        th:text="${InstrumentEntity.getInstrument_name}"></option>
+            </select>
+            <label for="chord"></label>
+            <select id="chord">
+                <option value="">Select a chord</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="G">G</option>
+            </select>
+            <button onclick="playSound()">Play</button>
+        </div>
         <div id="alert"></div>
     </section>
     <section>
