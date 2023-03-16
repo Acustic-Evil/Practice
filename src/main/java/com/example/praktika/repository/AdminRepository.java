@@ -3,6 +3,7 @@ package com.example.praktika.repository;
 import com.example.praktika.entity.AdminEntity;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
 import java.io.*;
 import java.util.List;
@@ -12,10 +13,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class AdminRepository implements IAdminRepository {
-    private final String FILE_PATH = "src/main/admins.json";
+    private final String FILE_PATH = "src/main/resources/data.json";
+
+    private final String FILE_PATH_forID = "data.json";
+    ClassPathResource resource = new ClassPathResource(FILE_PATH_forID);
+    InputStream inputStream = resource.getInputStream();
     ObjectMapper objectMapper = new ObjectMapper();
 
     private final AtomicInteger lastId = new AtomicInteger(getLastAdminId());
+
+    public AdminRepository() throws IOException {
+    }
 
     public int generateId() {
         return lastId.incrementAndGet();
@@ -25,7 +33,7 @@ public class AdminRepository implements IAdminRepository {
         int lastId = -1;
 
         try {
-            List<AdminEntity> admins = objectMapper.readValue(FILE_PATH, new TypeReference<List<AdminEntity>>() {});
+            List<AdminEntity> admins = objectMapper.readValue(inputStream, new TypeReference<>() {});
 
             if(!admins.isEmpty()){
                 AdminEntity lastAdmin = admins.get(admins.size() - 1);
@@ -52,9 +60,8 @@ public class AdminRepository implements IAdminRepository {
 
     @Override
     public List<AdminEntity> findAllAdmins() {
-        ObjectMapper mapper = new ObjectMapper();
         try {
-            return mapper.readValue(new File(FILE_PATH), new TypeReference<>() {
+            return objectMapper.readValue(new File(FILE_PATH), new TypeReference<>() {
             });
         } catch (IOException e) {
             e.printStackTrace();
@@ -86,9 +93,8 @@ public class AdminRepository implements IAdminRepository {
                 break;
             }
         }
-        ObjectMapper mapper = new ObjectMapper();
         try {
-            mapper.writeValue(new File(FILE_PATH), admins);
+            objectMapper.writeValue(new File(FILE_PATH), admins);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -98,6 +104,7 @@ public class AdminRepository implements IAdminRepository {
     public void delete(Integer id) {
         List<AdminEntity> persons = findAllAdmins();
         persons.removeIf(person -> Objects.equals(person.getId(), id));
+        System.out.println();
         try {
             objectMapper.writeValue(new File(FILE_PATH), persons);
         } catch (IOException e) {
