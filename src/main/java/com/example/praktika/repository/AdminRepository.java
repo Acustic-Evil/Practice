@@ -13,9 +13,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class AdminRepository implements IAdminRepository {
-    private final String FILE_PATH = "src/main/resources/data.json";
+    private final String FILE_PATH = "src/main/resources/data_files/admins.json";
 
-    private final String FILE_PATH_forID = "data.json";
+    private final String FILE_PATH_forID = "data_files/admins.json";
     ClassPathResource resource = new ClassPathResource(FILE_PATH_forID);
     InputStream inputStream = resource.getInputStream();
     ObjectMapper objectMapper = new ObjectMapper();
