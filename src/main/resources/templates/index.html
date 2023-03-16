@@ -1,66 +1,73 @@
 <!DOCTYPE html>
 <html lang="En">
-  <head>
+<head>
     <title>Bowed Musical Instruments</title>
     <link rel="stylesheet" type="text/css" href="../static/style.css">
     <script src="../static/script.js"></script>
-  </head>
-  <body>
-    <header>
-      <img src="/img/kissing_niggers.jpg" alt="Header Image">
-      <h1>Bowed Musical Gachi Instruments</h1>
-      <p>Welcome to our website! Please select an instrument and a chord to listen to.</p>
-      <p><button onclick="toggleDarkMode()">Toggle Dark Mode</button></p>
-      <button><a href="/admin"> Admin</a></button>
-    </header>
-    <main>
-      <section>
+</head>
+<body>
+<header>
+    <img src="/img/kissing_niggers.jpg" alt="Header Image">
+    <h1>Bowed Musical Gachi Instruments</h1>
+    <p>Welcome to our website! Please select an instrument and a chord to listen to.</p>
+    <p>
+        <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    </p>
+    <button><a href="/admin"> Admin</a></button>
+</header>
+<main>
+    <section>
         <h2>About the Violin</h2>
-        <p>The violin is a string instrument that is played with a bow. It is the smallest and highest-pitched instrument in the string family. The violin has been used in classical music for centuries and is a popular instrument in many other genres as well.</p>
-        <p>Key features of the violin include its four strings, which are tuned in fifths, and its f-shaped sound holes, which help to project the sound of the instrument.</p>
+        <p>The violin is a string instrument that is played with a bow. It is the smallest and highest-pitched
+            instrument in the string family. The violin has been used in classical music for centuries and is a popular
+            instrument in many other genres as well.</p>
+        <p>Key features of the violin include its four strings, which are tuned in fifths, and its f-shaped sound holes,
+            which help to project the sound of the instrument.</p>
         <a href="https://en.wikipedia.org/wiki/Violin">Learn more about the violin on Wikipedia</a>
-      </section>
-      <section>
+    </section>
+    <section>
         <h2>Select an Instrument and Chord</h2>
-        <form th:object="${person}">
-          <div class="select-container">
-            <label for="instrument"></label>
-            <select id="instrument">
-              <option th:each="InstrumentEntity: ${instrumentList}" th:value="${person.id}" th:text=""></option>
-            </select>
-            <label for="chord"></label>
-            <select id="chord">
-              <option value="">Select a chord</option>
-              <option value="A">A</option>
-              <option value="B">B</option>
-              <option value="C">C</option>
-              <option value="D">D</option>
-              <option value="E">E</option>
-              <option value="F">F</option>
-              <option value="G">G</option>
-            </select>
-            <button onclick="playSound()">Play</button>
-          </div>
+        <form>
+            <div class="select-container">
+                <label for="instrument"></label>
+                <select id="instrument">
+                    <option th:each = "InstrumentEntity: ${instrumentList}"
+                            th:value = "${InstrumentEntity.getId}"
+                            th:text = "${InstrumentEntity.getInstrument_name}"></option>
+                </select>
+                <label for="chord"></label>
+                <select id="chord">
+                    <option value="">Select a chord</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="G">G</option>
+                </select>
+                <button onclick="playSound()">Play</button>
+            </div>
         </form>
         <div id="alert"></div>
-      </section>
-      <section>
+    </section>
+    <section>
         <h2>Upcoming Events</h2>
         <ul>
-          <li>May 15: Violin Concerto by the City Symphony Orchestra</li>
-          <li>June 10-12: International Cello Festival</li>
-          <li>July 4: Viola and Piano Recital at the City Hall</li>
+            <li>May 15: Violin Concerto by the City Symphony Orchestra</li>
+            <li>June 10-12: International Cello Festival</li>
+            <li>July 4: Viola and Piano Recital at the City Hall</li>
         </ul>
-      </section>
-      <section>
+    </section>
+    <section>
         <h2>Photo Gallery</h2>
         <div class="gallery-container">
-          <img src="gallery-1.jpg" alt="Gallery Image 1">
-          <img src="gallery-2.jpg" alt="Gallery Image 2">
-          <img src="gallery-3.jpg" alt="Gallery Image 3">
-          <img src="gallery-4.jpg" alt="Gallery Image 4">
+            <img src="gallery-1.jpg" alt="Gallery Image 1">
+            <img src="gallery-2.jpg" alt="Gallery Image 2">
+            <img src="gallery-3.jpg" alt="Gallery Image 3">
+            <img src="gallery-4.jpg" alt="Gallery Image 4">
         </div>
-      </section>
-    </main>
-  </body>
+    </section>
+</main>
+</body>
 </html>

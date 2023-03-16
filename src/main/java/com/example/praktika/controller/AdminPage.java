@@ -1,7 +1,9 @@
 package com.example.praktika.controller;
 
 import com.example.praktika.entity.AdminEntity;
+import com.example.praktika.entity.InstrumentEntity;
 import com.example.praktika.service.AdminService;
+import com.example.praktika.service.InstrumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,16 +19,20 @@ public class AdminPage {
     @Autowired
     AdminService adminService;
 
-    @GetMapping("")
-    public String getAdminPage()  {
+    @Autowired
+    InstrumentService instrumentService;
 
+    @GetMapping("")
+    public String getAdminPage(Model instrumenModel)  {
+        List<InstrumentEntity> instrumentList = instrumentService.findAllInstruments();
+        instrumenModel.addAttribute("instrumentList", instrumentList);
         return "admin";
     }
 
     @GetMapping("/sign_up")
-    public String getSignUpPage(Model model) {
+    public String getSignUpPage(Model adminModel) {
         List<AdminEntity> adminList = adminService.findAllAdmins();
-        model.addAttribute("adminList", adminList);
+        adminModel.addAttribute("adminList", adminList);
         return "sign_up";
     }
 
@@ -38,7 +44,20 @@ public class AdminPage {
         else {return "redirect:/admin/sign_up";}
     }
 
-    @GetMapping("/delete_admin/{id}")
+    @PostMapping("/add_new_instrument")
+    public String addNewInstrument(@RequestParam(value = "instrument_name") String instrument_name,
+                                   @RequestParam(value = "num_of_strings") Integer num_of_strings,
+                                   @RequestParam(value = "factory_name") String factory_name,
+                                   @RequestParam(value = "factory_number") String factory_number) {
+        if(instrumentService.addNewInstrument(instrument_name, num_of_strings, factory_number, factory_name)) {
+            return "redirect:/admin";
+        } else {
+            return "redirect:/admin";
+        }
+
+    }
+
+    @GetMapping("/delete_admin/{id}") //по факту DeleteMapping
     private String delete_admin(@PathVariable int id){
         adminService.delete(id);
         return "redirect:/admin/sign_up";

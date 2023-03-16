@@ -1,76 +1,89 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Admin Page - Bowed Musical Instruments</title>
     <link rel="stylesheet" type="text/css" href="../static/style.css">
     <script src="../static/script.js"></script>
-  </head>
-  <body>
-    <header>
-      <h1>Admin Page - Bowed Musical Instruments</h1>
-    </header>
-    <p><button><a href="/"> Main page</a></button></p>
-    <p><button><a href="/admin/sign_up">Sign Up a new Admin</a></button></p>
-    <p><button onclick="toggleDarkMode()">Toggle Dark Mode</button></p>
-    <main>
-      <section>
+</head>
+<body>
+<header>
+    <h1>Admin Page - Bowed Musical Instruments</h1>
+</header>
+<p>
+    <button><a href="/"> Main page</a></button>
+</p>
+<p>
+    <button><a href="/admin/sign_up">Sign Up a new Admin</a></button>
+</p>
+<p>
+    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+</p>
+<main>
+    <section>
         <h2 style="text-align: center;">Add Instrument</h2>
-        <form action="/data" method="post">
-          <label for="instrument-name">Instrument name:</label>
-          <input type="text" id="instrument-name" name="instrument_name" required>
-          <label for="chord-name">Chord name:</label>
-          <input type="text" id="chord-name" name="chord_name" required>
-          <label for="num-of-strings">Number of strings:</label>
-          <input type="text" id="num-of-strings" name="num_of_strings" required>
-          <label for="factory-name">Factory name:</label>
-          <input type="text" id="factory-name" name="factory_name" required>
-          <label for="factory-number">Factory number:</label>
-          <input type="text" id="factory-number" name="factory_number" required>
-          <button type="submit">Add</button>
+        <form action="/admin/add_new_instrument" method="post">
+            <label for="instrument_name">Instrument name:</label>
+            <input type="text" id="instrument_name" name="instrument_name" required>
+            <label for="chord-name">Chord name:</label>
+            <input type="text" id="chord-name" name="chord_name" required>
+            <label for="num_of_strings">Number of strings:</label>
+            <input type="text" id="num_of_strings" name="num_of_strings" required>
+            <label for="factory_name">Factory name:</label>
+            <input type="text" id="factory_name" name="factory_name" required>
+            <label for="factory_number">Factory number:</label>
+            <input type="text" id="factory_number" name="factory_number" required>
+            <button type="submit">Add</button>
         </form>
-      </section>
-      <section>
+    </section>
+    <section>
         <h2 style="text-align: center;">Instruments</h2>
         <table>
-          <thead>
+            <thead>
             <tr>
-              <th>Name</th>
-              <th>Action</th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Number of strings</th>
+                <th>Factory name</th>
+                <th>Factory number</th>
+                <th>Action</th>
             </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>instrument 1</td>
-              <td>
-                <button>Edit</button>
-                <button>Delete</button>
-              </td>
+            </thead>
+            <tbody>
+            <tr th:each="InstEntity: ${instrumentList}">
+                <td th:text="${InstEntity.getId}"></td>
+                <td th:text="${InstEntity.getInstrument_name}"></td>
+                <td th:text="${InstEntity.getNum_of_strings}"></td>
+                <td th:text="${InstEntity.getFactory_name}"></td>
+                <td th:text="${InstEntity.getFactory_number}"></td>
+                <td>
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </td>
             </tr>
-            <!-- Repeat this row for each instrument in the database -->
-          </tbody>
+            </tbody>
         </table>
-      </section>
-      <section>
+    </section>
+    <section>
         <h2 style="text-align: center;">Chords</h2>
         <table>
-          <thead>
+            <thead>
             <tr>
-              <th>Name</th>
-              <th>Action</th>
+                <th>Name</th>
+                <th>Action</th>
             </tr>
-          </thead>
-          <tbody>
+            </thead>
+            <tbody>
             <tr>
-              <td>Chord 1</td>
-              <td>
-                <button>Edit</button>
-                <button>Delete</button>
-              </td>
+                <td>Chord 1</td>
+                <td>
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </td>
             </tr>
             <!-- Repeat this row for each chord in the database -->
-          </tbody>
+            </tbody>
         </table>
-      </section>
-    </main>
-  </body>
+    </section>
+</main>
+</body>
 </html>

@@ -17,13 +17,13 @@
 </form>
 <table>
     <thead>
-    <tr style="border-bottom:1px solid black">
+    <tr>
         <th>Id</th>
         <th>Username</th>
     </tr>
     </thead>
     <tbody>
-    <tr style="border-bottom:1px solid black" th:each="AdminEntity: ${adminList}">
+    <tr th:each="AdminEntity: ${adminList}">
         <td th:text="${AdminEntity.getId}"></td>
         <td th:text="${AdminEntity.getUsername}"></td>
         <td><a th:href="@{/admin/delete_admin/{id}(id=${AdminEntity.getId()})}">&Chi;</a></td>

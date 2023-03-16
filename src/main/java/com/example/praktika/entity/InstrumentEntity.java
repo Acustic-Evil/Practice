@@ -3,7 +3,7 @@ package com.example.praktika.entity;
 public class InstrumentEntity {
     private Integer id;
 
-    public String chord;
+/*    public String chord;*/
 
     public String instrument_name;
 
@@ -16,8 +16,8 @@ public class InstrumentEntity {
     public InstrumentEntity() {
     }
 
-    public InstrumentEntity(String chord, String instrument_name, Integer num_of_strings, String factory_number, String factory_name) {
-        this.chord = chord;
+    public InstrumentEntity(/*String chord,*/ String instrument_name, Integer num_of_strings, String factory_number, String factory_name) {
+        /*this.chord = chord;*/
         this.instrument_name = instrument_name;
         this.num_of_strings = num_of_strings;
         this.factory_number = factory_number;
@@ -40,13 +40,13 @@ public class InstrumentEntity {
         this.id = id;
     }
 
-    public String getChord() {
+/*    public String getChord() {
         return chord;
     }
 
     public void setChord(String chord) {
         this.chord = chord;
-    }
+    }*/
 
 
 

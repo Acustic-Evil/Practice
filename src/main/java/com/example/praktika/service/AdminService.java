@@ -13,15 +13,17 @@ public class AdminService implements IAdminService{
     @Autowired
     private IAdminRepository adminRepository;
 
+    @Override
     public boolean addNewAdmin( String role, String username, String password){
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         if(!saveAdmin(new AdminEntity("admin", username, bCryptPasswordEncoder.encode(password)))){
             return false;
         }
-        System.out.println("New user: "+username + " " +role);
+        System.out.println("New user: " + username + " " +role);
         return true;
     }
 
+    @Override
     public boolean saveAdmin(AdminEntity admin){
         AdminEntity userFromJson = adminRepository.findByUsername(admin.getUsername());
 
@@ -32,14 +34,17 @@ public class AdminService implements IAdminService{
         return true;
     }
 
+    @Override
     public List<AdminEntity> findAllAdmins(){
         return adminRepository.findAllAdmins();
     }
 
+    @Override
     public AdminEntity findById(int id){
         return adminRepository.findById(id);
     }
 
+    @Override
     public void delete(Integer id){
         adminRepository.delete(id);
     }

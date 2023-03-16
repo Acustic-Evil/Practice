@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class AdminRepository implements IAdminRepository {
-    private final String FILE_PATH = "src/main/resources/data_files/admins.json";
+    private final String Adm_FILE_PATH = "src/main/resources/data_files/admins.json";
 
     private final String FILE_PATH_forID = "data_files/admins.json";
     ClassPathResource resource = new ClassPathResource(FILE_PATH_forID);
@@ -49,7 +49,7 @@ public class AdminRepository implements IAdminRepository {
     public AdminEntity findByUsername(String username) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            List<AdminEntity> admins = objectMapper.readValue(new File(FILE_PATH), new TypeReference<>() {
+            List<AdminEntity> admins = objectMapper.readValue(new File(Adm_FILE_PATH), new TypeReference<>() {
             });
             return admins.stream().filter(a -> a.getUsername().equals(username)).findFirst().orElse(null);
         } catch (IOException e) {
@@ -61,7 +61,7 @@ public class AdminRepository implements IAdminRepository {
     @Override
     public List<AdminEntity> findAllAdmins() {
         try {
-            return objectMapper.readValue(new File(FILE_PATH), new TypeReference<>() {
+            return objectMapper.readValue(new File(Adm_FILE_PATH), new TypeReference<>() {
             });
         } catch (IOException e) {
             e.printStackTrace();
@@ -72,13 +72,13 @@ public class AdminRepository implements IAdminRepository {
     @Override
     public void save(AdminEntity admin) {
         try {
-            List<AdminEntity> admins = objectMapper.readValue(new File(FILE_PATH), new TypeReference<>() {
+            List<AdminEntity> admins = objectMapper.readValue(new File(Adm_FILE_PATH), new TypeReference<>() {
             });
             if (admin.getId() == null) {
                 admin.setId(generateId());
             }
             admins.add(admin);
-            objectMapper.writeValue(new File(FILE_PATH), admins);
+            objectMapper.writeValue(new File(Adm_FILE_PATH), admins);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -94,7 +94,7 @@ public class AdminRepository implements IAdminRepository {
             }
         }
         try {
-            objectMapper.writeValue(new File(FILE_PATH), admins);
+            objectMapper.writeValue(new File(Adm_FILE_PATH), admins);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -106,7 +106,7 @@ public class AdminRepository implements IAdminRepository {
         persons.removeIf(person -> Objects.equals(person.getId(), id));
         System.out.println();
         try {
-            objectMapper.writeValue(new File(FILE_PATH), persons);
+            objectMapper.writeValue(new File(Adm_FILE_PATH), persons);
         } catch (IOException e) {
             e.printStackTrace();
         }
