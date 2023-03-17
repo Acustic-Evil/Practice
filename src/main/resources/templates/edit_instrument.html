@@ -3,20 +3,23 @@
 <head>
     <title>Edit Instrument</title>
     <link rel="stylesheet" type="text/css" href="../static/styles/edit_instrument.css">
-    <script src="../static/script.js"></script>
 </head>
 <body>
-<div class="popup-overlay"></div>
-<div class="popup">
-    <h2>Edit Instrument</h2>
-    <header>
-        <h1>Admin Page - Edit Instrument</h1>
-    </header>
-    <p>
-        <a href="/admin"><button>Admin</button></a>
-        <a href="/logout"><button>Log out</button></a>
-        <a href="/"><button> Main page</button></a>
-    </p>
+<header>
+    <h1>Admin Page - Edit instrument</h1>
+    <div>
+        <a href="/admin">
+            <button>Admin</button>
+        </a>
+        <a href="/">
+            <button> Main page</button>
+        </a>
+        <a href="/logout">
+            <button>Log out</button>
+        </a>
+    </div>
+</header>
+<main>
     <table>
         <thead>
         <tr>
@@ -25,7 +28,7 @@
             <th>Number of strings</th>
             <th>Factory name</th>
             <th>Factory number</th>
-            <th>Action</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -37,13 +40,13 @@
                 <td><input th:value="${instrument.getFactory_name}" type="text" name="factory_name"></td>
                 <td><input th:value="${instrument.getFactory_number}" type="text" name="factory_number"></td>
                 <td>
-                    <button type="submit">Save Changes</button>
+                    <button type="submit">✅</button>
                 </td>
             </form>
         </tr>
         </tbody>
     </table>
-</div>
+</main>
 </body>
 </html>
 
