@@ -7,8 +7,16 @@
     <script src="../static/script.js"></script>
 </head>
 <body>
-<div id="alert">Error: Incorrect username or password</div>
-<h1>Sign In</h1>
+
+<header>
+    <h1>Sign In</h1>
+</header>
+<p>
+    <a href="/admin"><button>Admin</button></a>
+    <a href="/logout"><button>Log out</button></a>
+    <a href="/"><button> Main page</button></a>
+</p>
+
 <form action="/sign_in" method="post">
     <div>
         <label>Username:

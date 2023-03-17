@@ -10,13 +10,11 @@
     <h1>Admin Page - Bowed Musical Instruments</h1>
 </header>
 <p>
-    <button><a href="/"> Main page</a></button>
+    <a href="/"><button> Main page</button></a>
+    <a href="/logout"><button>Log out</button></a>
 </p>
 <p>
-    <button><a href="/admin/sign_up">Sign Up a new Admin</a></button>
-</p>
-<p>
-    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+   <a href="/admin/sign_up"> <button>Sign Up a new Admin</button></a>
 </p>
 <main>
     <section>
@@ -56,34 +54,17 @@
                 <td th:text="${InstEntity.getFactory_name}"></td>
                 <td th:text="${InstEntity.getFactory_number}"></td>
                 <td>
-                    <a th:href="@{/admin/edit_instrument/{id}(id=${InstEntity.getId()})}"><button>✏️</button></a>
-                    <a th:href="@{/admin/delete_instrument/{id}(id=${InstEntity.getId()})}"><button>❌</button></a>
+                    <a th:href="@{/admin/edit_instrument/{id}(id=${InstEntity.getId()})}">
+                        <button>✏️</button>
+                    </a>
+                    <a th:href="@{/admin/delete_instrument/{id}(id=${InstEntity.getId()})}">
+                        <button>❌</button>
+                    </a>
                 </td>
             </tr>
             </tbody>
         </table>
     </section>
-<!--    <section>
-        <h2 style="text-align: center;">Chords</h2>
-        <table>
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Chord 1</td>
-                <td>
-                    <button>Edit</button>
-                    <button>Delete</button>
-                </td>
-            </tr>
-            &lt;!&ndash; Repeat this row for each chord in the database &ndash;&gt;
-            </tbody>
-        </table>
-    </section>-->
 </main>
 </body>
 </html>
