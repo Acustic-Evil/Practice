@@ -15,6 +15,7 @@ function playSound() {
         alertBox.style.opacity = 0;
     }, 3000);
 }
+/*
 
 let darkMode = false;
 
@@ -38,4 +39,4 @@ const select = document.getElementById('theme');
 
 select.addEventListener('change', () => {
     document.body.className = select.value;
-});
+}); */

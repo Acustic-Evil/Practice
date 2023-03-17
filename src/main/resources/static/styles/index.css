@@ -1,3 +1,4 @@
+/*
 body {
   background-color: #fff;
   color: #000;
@@ -5,9 +6,9 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  --link-color: #007bff; /* default link color */
-  --link-color-dark: #1abc9c; /* link color for dark mode */
-  --link-color-light: #007bff; /* link color for light mode */
+  --link-color: #007bff; !* default link color *!
+  --link-color-dark: #1abc9c; !* link color for dark mode *!
+  --link-color-light: #007bff; !* link color for light mode *!
 }
 
 a {
@@ -76,6 +77,7 @@ button:hover {
 th {
   text-align: center;
 }
+*/
 
 #alert {
   position: fixed;
@@ -88,25 +90,4 @@ th {
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
-}
-
-select {
-  font-size: 1.2rem;
-  padding: 0.5rem;
-  margin: 1rem;
-  border-radius: 0.5rem;
-  background-color: #444;
-  color: #fff;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-select::-ms-expand {
-  display: none;
-}
-
-select option {
-  background-color: #444;
-  color: #fff;
 }
