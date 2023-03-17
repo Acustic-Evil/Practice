@@ -2,23 +2,26 @@
 <html>
 <head>
     <title>Admin Page - Bowed Musical Instruments</title>
-    <link rel="stylesheet" type="text/css" href="../static/styles/admin.css">
-    <script src="../static/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/styles/admin.css">
 </head>
 <body>
 <header>
     <h1>Admin Page - Bowed Musical Instruments</h1>
+    <div>
+        <a href="/admin/sign_up">
+            <button>Sign Up a new Admin</button>
+        </a>
+        <a href="/">
+            <button> Main page</button>
+        </a>
+        <a href="/logout">
+            <button>Log out</button>
+        </a>
+    </div>
 </header>
-<p>
-    <a href="/"><button> Main page</button></a>
-    <a href="/logout"><button>Log out</button></a>
-</p>
-<p>
-   <a href="/admin/sign_up"> <button>Sign Up a new Admin</button></a>
-</p>
 <main>
     <section>
-        <h2 style="text-align: center;">Add Instrument</h2>
+        <h2>Add Instrument</h2>
         <form action="/admin/add_new_instrument" method="post">
             <label for="instrument_name">Instrument name:</label>
             <input type="text" id="instrument_name" name="instrument_name" required>
@@ -34,7 +37,7 @@
         </form>
     </section>
     <section>
-        <h2 style="text-align: center;">Instruments</h2>
+        <h2>Instruments</h2>
         <table>
             <thead>
             <tr>
@@ -43,7 +46,7 @@
                 <th>Number of strings</th>
                 <th>Factory name</th>
                 <th>Factory number</th>
-                <th>Action</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>

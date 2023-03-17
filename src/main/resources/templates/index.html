@@ -2,18 +2,19 @@
 <html lang="En">
 <head>
     <title>Bowed Musical Instruments</title>
-    <link rel="stylesheet" type="text/css" href="../static/styles/index.css">
-    <script src="../static/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/styles/index.css">
+    <script src="/static/script.js"></script>
 </head>
 <body>
 <header>
-    <!--<img src="" alt="Header Image">-->
-    <h1>Bowed Musical Instruments</h1>
-    <p>Welcome to our website! Please select an instrument and a chord to listen to.</p>
-    <a href="/admin"><button>Admin</button></a>
-    <a href="/logout"><button>Log out</button></a>
+    <h1>Admin Page - Bowed Musical Instruments</h1>
+    <div>
+        <a href="/admin"> <button>Admin</button></a>
+        <a href="/logout"><button>Log out</button></a>
+    </div>
 </header>
 <main>
+    <p>Welcome to our website! Please select an instrument and a chord to listen to.</p>
     <section>
         <h2>Select an Instrument and Chord</h2>
         <div class="select-container">
@@ -34,17 +35,16 @@
                 <option value="F">F</option>
                 <option value="G">G</option>
             </select>
-            <button onclick="playSound()">Play</button>
+            <div>
+                <button onclick="playSound()">Play</button>
+            </div>
         </div>
         <div id="alert"></div>
     </section>
     <section>
         <h2>Photo Gallery</h2>
         <div class="gallery-container">
-            <img src="../images/Violin.webp" alt="Gallery Image 1">
-            <img src="../images/Double-Bass.webp" alt="Gallery Image 2">
-            <img src="../images/Cello.png" alt="Gallery Image 3">
-            <img src="../images/Bow.jpg" alt="Gallery Image 4">
+            <img src="/images/Violin.webp" alt="Gallery Image 1">
         </div>
     </section>
 </main>

@@ -3,35 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign In</title>
-    <link rel="stylesheet" href="../static/styles/sign_in.css">
-    <script src="../static/script.js"></script>
+    <link rel="stylesheet" href="/static/styles/sign_in.css">
 </head>
 <body>
-
 <header>
     <h1>Sign In</h1>
+    <a href="/">
+        <button> Main page</button>
+    </a>
 </header>
-<p>
-    <a href="/admin"><button>Admin</button></a>
-    <a href="/logout"><button>Log out</button></a>
-    <a href="/"><button> Main page</button></a>
-</p>
-
-<form action="/sign_in" method="post">
-    <div>
-        <label>Username:
-            <input type="text" name="username">
-        </label>
-        <label>Password:
-            <input type="password" name="password">
-        </label>
-        <button type="submit">Вход</button>
-    </div>
-</form>
-
-<p>
-    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
-</p>
-
+<main>
+    <form action="/sign_in" method="post">
+        <div>
+            <label>Username:
+                <input type="text" name="username">
+            </label>
+            <label>Password:
+                <input type="password" name="password">
+            </label>
+            <button type="submit">Вход</button>
+        </div>
+    </form>
+</main>
 </body>
 </html>
