@@ -1,0 +1,112 @@
+body {
+  background-color: #fff;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  --link-color: #007bff; /* default link color */
+  --link-color-dark: #1abc9c; /* link color for dark mode */
+  --link-color-light: #007bff; /* link color for light mode */
+}
+
+a {
+  color: var(--link-color);
+}
+
+.dark-mode a {
+  color: var(--link-color-dark);
+}
+
+.light-mode a {
+  color: var(--link-color-light);
+}
+
+.dark-mode {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+select,
+input,
+button {
+  padding: 8px;
+  margin-right: 8px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 2px solid #ccc;
+  transition: border-color 0.3s ease-in-out;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 12px;
+  font-size: 16px;
+}
+
+input:focus,
+select:focus,
+button:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button a{
+  --link-color: #ffffff;
+  text-decoration: none;
+  --link-color-dark: #ffffff;
+  --link-color-light: #ffffff;
+}
+
+button:hover {
+  background-color: #024a96;
+}
+
+th {
+  text-align: center;
+}
+
+#alert {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #f00;
+  color: #fff;
+  padding: 8px;
+  border-radius: 4px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+select {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
+  background-color: #444;
+  color: #fff;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+select option {
+  background-color: #444;
+  color: #fff;
+}
