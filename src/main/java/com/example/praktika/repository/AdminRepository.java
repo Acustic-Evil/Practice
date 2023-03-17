@@ -4,7 +4,9 @@ import com.example.praktika.entity.AdminEntity;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
+
 import java.io.*;
 import java.util.List;
 import java.util.Objects;
@@ -22,20 +24,24 @@ public class AdminRepository implements IAdminRepository {
 
     private final AtomicInteger lastId = new AtomicInteger(getLastAdminId());
 
+
     public AdminRepository() throws IOException {
     }
 
+    @Async
     public int generateId() {
         return lastId.incrementAndGet();
     }
 
-    public int getLastAdminId(){
+    @Async
+    public int getLastAdminId() {
         int lastId = -1;
 
         try {
-            List<AdminEntity> admins = objectMapper.readValue(inputStream, new TypeReference<>() {});
+            List<AdminEntity> admins = objectMapper.readValue(inputStream, new TypeReference<>() {
+            });
 
-            if(!admins.isEmpty()){
+            if (!admins.isEmpty()) {
                 AdminEntity lastAdmin = admins.get(admins.size() - 1);
                 lastId = lastAdmin.getId();
             }
@@ -45,6 +51,7 @@ public class AdminRepository implements IAdminRepository {
         return lastId;
     }
 
+    @Async
     @Override
     public AdminEntity findByUsername(String username) {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -58,6 +65,7 @@ public class AdminRepository implements IAdminRepository {
         }
     }
 
+    @Async
     @Override
     public List<AdminEntity> findAllAdmins() {
         try {
@@ -69,6 +77,7 @@ public class AdminRepository implements IAdminRepository {
         }
     }
 
+    @Async
     @Override
     public void save(AdminEntity admin) {
         try {
@@ -84,6 +93,7 @@ public class AdminRepository implements IAdminRepository {
         }
     }
 
+    @Async
     @Override
     public void update(AdminEntity admin) {
         List<AdminEntity> admins = findAllAdmins();
@@ -100,6 +110,7 @@ public class AdminRepository implements IAdminRepository {
         }
     }
 
+    @Async
     @Override
     public void delete(Integer id) {
         List<AdminEntity> persons = findAllAdmins();
@@ -112,6 +123,7 @@ public class AdminRepository implements IAdminRepository {
         }
     }
 
+    @Async
     @Override
     public AdminEntity findById(int id) {
         List<AdminEntity> admins = findAllAdmins();
@@ -122,5 +134,4 @@ public class AdminRepository implements IAdminRepository {
         }
         return null;
     }
-
 }

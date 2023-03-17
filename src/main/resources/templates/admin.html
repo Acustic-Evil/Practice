@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Admin Page - Bowed Musical Instruments</title>
-    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <link rel="stylesheet" type="text/css" href="../static/styles/admin.css">
     <script src="../static/script.js"></script>
 </head>
 <body>
@@ -56,8 +56,8 @@
                 <td th:text="${InstEntity.getFactory_name}"></td>
                 <td th:text="${InstEntity.getFactory_number}"></td>
                 <td>
-                    <button><a th:href="@{/admin/edit_instrument/{id}(id=${InstEntity.getId()})}">✏️</a></button>
-                    <button><a th:href="@{/admin/delete_instrument/{id}(id=${InstEntity.getId()})}">❌</a></button>
+                    <a th:href="@{/admin/edit_instrument/{id}(id=${InstEntity.getId()})}"><button>✏️</button></a>
+                    <a th:href="@{/admin/delete_instrument/{id}(id=${InstEntity.getId()})}"><button>❌</button></a>
                 </td>
             </tr>
             </tbody>

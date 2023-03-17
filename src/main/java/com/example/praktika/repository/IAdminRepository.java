@@ -15,6 +15,8 @@ public interface IAdminRepository {
     List<AdminEntity> findAllAdmins();
 
     void save(AdminEntity admin);
+
     void update(AdminEntity admin);
+
     void delete(Integer id);
 }

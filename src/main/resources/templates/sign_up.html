@@ -2,22 +2,20 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/styles/sign_up.css">
     <title>ADMIN | SIGN UP</title>
 </head>
 <body>
 <div class="intro"></div>
 <form action="/admin/sign_up" method="post">
-    <div>
-        <div>Регистрация администратора</div>
-        <label>
-            <input type="text" placeholder="Введите никнейм" name="username">
-        </label>
-        <label>
-            <input type="password" placeholder="Введиете пароль" name="password">
-        </label>
-        <input type="submit" class="link-btn" value="Зарегистрировать">
-    </div>
+    <div>Регистрация администратора</div>
+    <label>
+        <input type="text" placeholder="Введите никнейм" name="username">
+    </label>
+    <label>
+        <input type="password" placeholder="Введиете пароль" name="password">
+    </label>
+    <button type="submit" class="link-btn">Зарегистрировать</button>
 </form>
 <table>
     <thead>

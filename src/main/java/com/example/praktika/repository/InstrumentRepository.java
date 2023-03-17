@@ -5,6 +5,7 @@ import com.example.praktika.entity.InstrumentEntity;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 
 import java.io.File;
@@ -15,7 +16,7 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
-public class InstrumentRepository implements IInstrumentRepository{
+public class InstrumentRepository implements IInstrumentRepository {
 
     private final static String Ins_FILE_PATH = "src/main/resources/data_files/instruments.json";
 
@@ -24,20 +25,25 @@ public class InstrumentRepository implements IInstrumentRepository{
     InputStream inputStream = resource.getInputStream();
     ObjectMapper objectMapper = new ObjectMapper();
 
-    public InstrumentRepository() throws IOException{}
+    public InstrumentRepository() throws IOException {
+    }
 
     private final AtomicInteger lastId = new AtomicInteger(getLastInstrumentId());
+
+    @Async
     public int generateId() {
         return lastId.incrementAndGet();
     }
 
-    public int getLastInstrumentId(){
+    @Async
+    public int getLastInstrumentId() {
         int lastId = -1;
 
         try {
-            List<InstrumentEntity> instruments = objectMapper.readValue(inputStream, new TypeReference<>() {});
+            List<InstrumentEntity> instruments = objectMapper.readValue(inputStream, new TypeReference<>() {
+            });
 
-            if(!instruments.isEmpty()){
+            if (!instruments.isEmpty()) {
                 InstrumentEntity lastAdmin = instruments.get(instruments.size() - 1);
                 lastId = lastAdmin.getId();
             }
@@ -47,16 +53,19 @@ public class InstrumentRepository implements IInstrumentRepository{
         return lastId;
     }
 
+    @Async
     @Override
     public List<InstrumentEntity> findAllInstruments() {
         try {
-            return objectMapper.readValue(new File(Ins_FILE_PATH), new TypeReference<>() {});
+            return objectMapper.readValue(new File(Ins_FILE_PATH), new TypeReference<>() {
+            });
         } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
     }
 
+    @Async
     @Override
     public void save(InstrumentEntity instrument) {
         try {
@@ -72,6 +81,7 @@ public class InstrumentRepository implements IInstrumentRepository{
         }
     }
 
+    @Async
     @Override
     public InstrumentEntity findByName(String instrument_name) {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -85,6 +95,7 @@ public class InstrumentRepository implements IInstrumentRepository{
         }
     }
 
+    @Async
     @Override
     public void update(InstrumentEntity instrument) {
         List<InstrumentEntity> instruments = findAllInstruments();
@@ -101,6 +112,7 @@ public class InstrumentRepository implements IInstrumentRepository{
         }
     }
 
+    @Async
     @Override
     public void delete(Integer id) {
         List<InstrumentEntity> instruments = findAllInstruments();
@@ -113,6 +125,7 @@ public class InstrumentRepository implements IInstrumentRepository{
         }
     }
 
+    @Async
     @Override
     public InstrumentEntity findById(int id) {
         List<InstrumentEntity> instruments = findAllInstruments();

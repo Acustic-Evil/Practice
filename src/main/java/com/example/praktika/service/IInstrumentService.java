@@ -14,6 +14,7 @@ public interface IInstrumentService {
     boolean saveInstrument(InstrumentEntity admin);
 
     InstrumentEntity findById(int id);
+    InstrumentEntity update(InstrumentEntity instrument);
 
     void delete(Integer id);
 

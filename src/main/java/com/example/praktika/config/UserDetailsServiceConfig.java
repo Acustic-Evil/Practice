@@ -3,6 +3,7 @@ package com.example.praktika.config;
 import com.example.praktika.entity.AdminEntity;
 import com.example.praktika.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -19,6 +20,7 @@ public class UserDetailsServiceConfig implements UserDetailsService {
     private AdminRepository adminRepository;
 
     @Override
+    @Async
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         System.out.println(login);
         AdminEntity admin = adminRepository.findByUsername(login);
