@@ -36,7 +36,7 @@
             <form th:action="'/admin/edit_instrument/' + ${instrument.getId}" method="post">
                 <td th:text="${instrument.getId}" name="id"></td>
                 <td><input th:value="${instrument.getInstrument_name}" type="text" name="instrument_name"></td>
-                <td><input th:value="${instrument.getNum_of_strings}" type="text" name="num_of_strings"></td>
+                <td><input th:value="${instrument.getNum_of_strings}" type="number" name="num_of_strings"></td>
                 <td><input th:value="${instrument.getFactory_name}" type="text" name="factory_name"></td>
                 <td><input th:value="${instrument.getFactory_number}" type="text" name="factory_number"></td>
                 <td>

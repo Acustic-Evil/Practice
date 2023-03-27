@@ -6,7 +6,6 @@ import org.springframework.scheduling.annotation.Async;
 
 @SpringBootApplication
 public class PraktikaApplication {
-    @Async
     public static void main(String[] args) {
         SpringApplication.run(PraktikaApplication.class, args);
     }
