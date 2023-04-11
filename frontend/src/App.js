@@ -1,24 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import logo from './logo.svg';
+import './App.css';
 
-function InstrumentList() {
-    const [instruments, setInstruments] = useState([]);
-
-    useEffect(() => {
-        fetch('/api/instruments')
-            .then(response => response.json())
-            .then(data => setInstruments(data));
-    }, []);
-
-    return (
-        <div>
-            <h2>Instrument List</h2>
-            <ul>
-                {instruments.map(instrument => (
-                    <li key={instrument.id}>{instrument.name}</li>
-                ))}
-            </ul>
-        </div>
-    );
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
 }
 
-export default InstrumentList;
+export default App;
