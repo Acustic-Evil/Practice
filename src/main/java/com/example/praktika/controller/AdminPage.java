@@ -23,12 +23,6 @@ public class AdminPage {
     @Autowired
     InstrumentService instrumentService;
 
-    @GetMapping("/api/instruments")
-    @ResponseBody
-    public List<InstrumentEntity> getInstruments() {
-        return instrumentService.findAllInstruments();
-    }
-
 
     @GetMapping("")
     public String getAdminPage(Model instrumenModel)  {
