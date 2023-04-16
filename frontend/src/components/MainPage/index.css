@@ -1,0 +1,135 @@
+body {
+  background-color: #364156;
+  font-family: Arial, sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #7D4E57;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header button {
+  background-color: #11151C;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+header button:hover {
+  background-color: #7D4E57;
+}
+
+header a {
+  text-decoration: none;
+}
+
+h1 {
+  margin: 0;
+  font-size: 36px;
+}
+
+button {
+  background-color: #11151C;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+button:hover {
+  background-color: #405d86;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+select {
+  background-color: #53749b;
+  padding: 8px;
+  margin-right: 8px;
+  font-size: 16px;
+  border-radius: 7px;
+  border: 2px solid #3a3232;
+  transition: border-color 0.3s ease-in-out;
+  width: 25%;
+  margin-bottom: 16px;
+  color: white;
+}
+
+select:focus{
+  outline: none;
+  border-color: #007bff;
+}
+
+.gallery-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.gallery-container img {
+  width: 30%;
+  height: 30%;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .select-container {
+    flex-wrap: wrap;
+  }
+
+  select {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .gallery-container img {
+    width: 100%;
+  }
+}
+
+#alert {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #f00;
+  color: #fff;
+  padding: 8px;
+  border-radius: 4px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
