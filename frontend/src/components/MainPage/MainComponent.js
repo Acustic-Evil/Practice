@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import './index.css'
-import './Violin.webp'
-import MainService from "/services/MainService";
+import styles from './index.css'
+import MainService from "./services/MainService";
 
 function MainComponent() {
     const [instruments, setInstruments] = useState([])
@@ -21,9 +20,9 @@ function MainComponent() {
         <>
             <body>
             <header>
-                <h1>Admin Page - Bowed Musical Instruments</h1>
+                <h1>Bowed Musical Instruments</h1>
                 <div>
-                    <a href="/api/admin/main">
+                    <a href="/admin">
                         <button>Admin</button>
                     </a>
                     {/*<a href="/logout">
@@ -37,7 +36,7 @@ function MainComponent() {
 
 
                     <h2>Select an Instrument and Chord</h2>
-                    <div className="select-container">
+                    <div className={styles.selectContainer}>
                         <label htmlFor="instrument"></label>
                         <select>
                             {instruments.map(
