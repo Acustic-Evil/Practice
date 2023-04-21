@@ -28,7 +28,7 @@ public class InstrumentRepository implements IInstrumentRepository {
     public InstrumentRepository() throws IOException {
     }
 
-    private final AtomicInteger lastId = new AtomicInteger(getLastInstrumentId());
+    private final AtomicInteger lastId = new AtomicInteger(Math.toIntExact(getLastInstrumentId()));
 
     @Async
     public int generateId() {
@@ -36,8 +36,8 @@ public class InstrumentRepository implements IInstrumentRepository {
     }
 
     @Async
-    public int getLastInstrumentId() {
-        int lastId = -1;
+    public Long getLastInstrumentId() {
+        Long lastId = (long) -1;
 
         try {
             List<InstrumentEntity> instruments = objectMapper.readValue(inputStream, new TypeReference<>() {
@@ -67,18 +67,19 @@ public class InstrumentRepository implements IInstrumentRepository {
 
     @Async
     @Override
-    public void save(InstrumentEntity instrument) {
+    public InstrumentEntity save(InstrumentEntity instrument) {
         try {
             List<InstrumentEntity> instruments = objectMapper.readValue(new File(Ins_FILE_PATH), new TypeReference<>() {
             });
             if (instrument.getId() == null) {
-                instrument.setId(generateId());
+                instrument.setId((long) generateId());
             }
             instruments.add(instrument);
             objectMapper.writeValue(new File(Ins_FILE_PATH), instruments);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return instrument;
     }
 
     @Async
@@ -114,7 +115,7 @@ public class InstrumentRepository implements IInstrumentRepository {
 
     @Async
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         List<InstrumentEntity> instruments = findAllInstruments();
         instruments.removeIf(instrument -> Objects.equals(instrument.getId(), id));
         System.out.println();
@@ -127,7 +128,7 @@ public class InstrumentRepository implements IInstrumentRepository {
 
     @Async
     @Override
-    public InstrumentEntity findById(int id) {
+    public InstrumentEntity findById(Long id) {
         List<InstrumentEntity> instruments = findAllInstruments();
         for (InstrumentEntity instrument : instruments) {
             if (instrument.getId() == id) {

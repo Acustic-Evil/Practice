@@ -3,6 +3,7 @@ package com.example.praktika.service;
 import com.example.praktika.entity.InstrumentEntity;
 import com.example.praktika.repository.InstrumentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -20,35 +21,29 @@ public class InstrumentService implements IInstrumentService {
 
     @Async
     @Override
-    public boolean addNewInstrument(String instrument_name, Integer num_of_strings, String factory_number, String factory_name) {
-        if (!saveInstrument(new InstrumentEntity(instrument_name, num_of_strings, factory_number, factory_name))) {
-            return false;
-        }
-        System.out.println("New Instrument: " + instrument_name + "Strings: " + num_of_strings + "\nFactory: " + factory_name + ":" + factory_number);
-        return true;
+    public InstrumentEntity addNewInstrument(InstrumentEntity instrument) {
+        /*InstrumentEntity instrument = new InstrumentEntity(instrument_name, num_of_strings, factory_name, factory_number);*/
+        return saveInstrument(instrument);
     }
 
     @Async
     @Override
-    public boolean saveInstrument(InstrumentEntity instrument) {
-        InstrumentEntity instrumentFromJson = instrumentRepository.findByName(instrument.getInstrument_name());
-
-        if (instrumentFromJson != null) {
-            return false;
+    public InstrumentEntity saveInstrument(InstrumentEntity instrument) {
+        if (instrument.getInstrument_name() == null) {
+            throw new IllegalArgumentException("One ore more fields are null");
         }
-        instrumentRepository.save(instrument);
-        return true;
+        return instrumentRepository.save(instrument);
     }
 
     @Async
     @Override
-    public InstrumentEntity findById(int id) {
+    public InstrumentEntity findById(Long id) {
         return instrumentRepository.findById(id);
     }
 
     @Async
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         instrumentRepository.delete(id);
     }
 

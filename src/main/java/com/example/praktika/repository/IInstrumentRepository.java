@@ -8,11 +8,11 @@ public interface IInstrumentRepository {
 
     List<InstrumentEntity> findAllInstruments();
 
-    void save(InstrumentEntity admin);
+    InstrumentEntity save(InstrumentEntity admin);
 
     InstrumentEntity findByName(String instrument_name);
 
-    InstrumentEntity findById(int id);
+    InstrumentEntity findById(Long id);
     void update(InstrumentEntity instrument);
-    void delete(Integer id);
+    void delete(Long id);
 }

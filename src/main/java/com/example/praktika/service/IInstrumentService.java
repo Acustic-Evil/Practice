@@ -9,14 +9,16 @@ public interface IInstrumentService {
 
     List<InstrumentEntity> findAllInstruments();
 
-    boolean addNewInstrument(String instrument_name, Integer num_of_strings, String factory_number, String factory_name);
+/*
+    InstrumentEntity addNewInstrument(String instrument_name, Integer num_of_strings, String factory_name, String factory_number);
+*/
+    InstrumentEntity addNewInstrument(InstrumentEntity instrument);
+    InstrumentEntity saveInstrument(InstrumentEntity admin);
 
-    boolean saveInstrument(InstrumentEntity admin);
-
-    InstrumentEntity findById(int id);
+    InstrumentEntity findById(Long id);
     InstrumentEntity update(InstrumentEntity instrument);
 
-    void delete(Integer id);
+    void delete(Long id);
 
 
 }

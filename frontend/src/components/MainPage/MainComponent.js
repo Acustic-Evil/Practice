@@ -17,19 +17,17 @@ function MainComponent() {
     };
 
     return (
-        <>
-            <body>
-            <header>
-                <h1>Bowed Musical Instruments</h1>
-                <div>
-                    <a href="/admin">
-                        <button>Admin</button>
-                    </a>
-                    {/*<a href="/logout">
+        <><header>
+            <h1>Bowed Musical Instruments</h1>
+            <div>
+                <a href="/admin">
+                    <button>Admin</button>
+                </a>
+                {/*<a href="/logout">
                         <button>Log out</button>
                     </a>*/}
-                </div>
-            </header>
+            </div>
+        </header>
             <main>
                 <p>Welcome to our website! Please select an instrument and a chord to listen to.</p>
                 <section>
@@ -41,7 +39,7 @@ function MainComponent() {
                         <select>
                             {instruments.map(
                                 instrument =>
-                                    <option id={instrument} key={instrument.id}
+                                    <option id="instrument" key={instrument.id}
                                             value={instrument.instrument_name}>{instrument.instrument_name}</option>
                             )}
                         </select>
@@ -69,7 +67,6 @@ function MainComponent() {
                     </div>*/}
                 </section>
             </main>
-            </body>
         </>
     )
 }

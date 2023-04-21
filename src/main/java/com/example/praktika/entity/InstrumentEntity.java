@@ -1,7 +1,7 @@
 package com.example.praktika.entity;
 
 public class InstrumentEntity {
-    private Integer id;
+    private Long id;
 
 /*    public String chord;*/
 
@@ -24,7 +24,7 @@ public class InstrumentEntity {
         this.factory_name = factory_name;
     }
 
-    public InstrumentEntity(Integer id, String instrument_name, Integer num_of_strings, String factory_number, String factory_name) {
+    public InstrumentEntity(Long id, String instrument_name, Integer num_of_strings, String factory_number, String factory_name) {
         this.id = id;
         this.instrument_name = instrument_name;
         this.num_of_strings = num_of_strings;
@@ -40,11 +40,11 @@ public class InstrumentEntity {
         this.instrument_name = instrument_name;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -20,7 +20,6 @@ function SignUpComponent() {
 
     return (
         <>
-            <div className="intro"></div>
             <header>
                 <h1>Admin Page - Add New Admins</h1>
                 <div>
@@ -35,6 +34,7 @@ function SignUpComponent() {
                     </a>*/}
                 </div>
             </header>
+            <div className="intro"></div>
             <main>
                 <form action="/admin/sign_up" method="post">
                     <p>Регистрация администратора</p>

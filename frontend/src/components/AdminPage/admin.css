@@ -1,4 +1,4 @@
-.body {
+body {
     background-color: #364156;
     font-family: Arial, sans-serif;
     color: white;
@@ -6,7 +6,7 @@
     padding: 0;
 }
 
-.header {
+header {
     background-color: #7D4E57;
     padding: 20px;
     text-align: center;
@@ -15,27 +15,27 @@
     align-items: center;
 }
 
-.header-button {
+header button {
     background-color: #11151C;
     color: #ffffff;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
 }
-.header-button:hover {
+header button:hover {
     background-color: #7D4E57;
 }
 
-.header a {
+header a {
     text-decoration: none;
 }
 
-.h1 {
+h1 {
     margin: 0;
     font-size: 36px;
 }
 
-.button {
+button {
     background-color: #11151C;
     border: none;
     color: white;
@@ -46,43 +46,43 @@
     font-size: 18px;
 }
 
-.button:hover {
+button:hover {
     background-color: #405d86;
 }
 
-.a {
+a {
     text-decoration: none;
     color: white;
 }
 
-.main {
+main {
     max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
 }
 
-.section {
+section {
     margin-bottom: 20px;
 }
 
-.table {
+table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.th{
+th{
     padding: 10px;
     text-align: left;
     border-bottom: 1px solid white;
 }
 
-.td {
+td {
     padding: 10px;
     text-align: left;
     border-bottom: 1px solid white;
 }
 
-.th {
+th {
     background-color: #7D4E57;
     color: white;
     font-weight: bold;
@@ -92,13 +92,13 @@
     background-color: #212D40;
 }
 
-.label {
+label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
-.input[type="text"] {
+input[type="text"] {
     padding: 10px;
     border-radius: 5px;
     border: none;
@@ -107,7 +107,7 @@
     margin-bottom: 10px;
 }
 
-.input[type="number"] {
+input[type="number"] {
     padding: 10px;
     border-radius: 5px;
     border: none;
@@ -116,7 +116,7 @@
     margin-bottom: 10px;
 }
 
-.button[type="submit"] {
+button[type="submit"] {
     background-color: #7D4E57;
     color: white;
     border: none;
@@ -126,6 +126,6 @@
     font-size: 18px;
 }
 
-.button[type="submit"]:hover {
+button[type="submit"]:hover {
     background-color: #364156;
 }
