@@ -2,13 +2,14 @@ import React, {Component, useEffect, useState} from "react";
 import MainService from "../MainPage/services/MainService";
 import baseUrl from "../../base-url";
 import axios from "axios";
+import backend from "../../backend";
 
 function AdminInstrumentsTable() {
      const [instruments, setInstruments] = useState([])
 
-     useEffect(() => {
+     /*useEffect(() => {
          getInstruments()
-         /*fetch(baseUrl + '/admin/main')
+         /!*fetch(baseUrl + '/admin/main')
              .then(response => {
                  if(!response.ok){
                      throw new Error('Failed to fetch instruments');
@@ -20,7 +21,7 @@ function AdminInstrumentsTable() {
              })
              .catch(error => {
                  console.error(error);
-             });*/
+             });*!/
      }, []);
 
      const getInstruments = () => {
@@ -28,7 +29,8 @@ function AdminInstrumentsTable() {
              setInstruments(response.data)
              console.log(response.data);
          });
-     };
+     };*/
+    /*backend.Admin.getInstruments().then(r => );*/
 
      const handleDelete = id => {
          axios.delete(baseUrl + `/admin/delete_instrument/${id}`, id)

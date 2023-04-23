@@ -70,19 +70,19 @@ public class AdminPage {
         return ResponseEntity.ok(instruments);
     }
 
-    @GetMapping("/delete_admin/{id}") //по факту DeleteMapping // TODO: refactor for react
+    @GetMapping("/delete_admin/{id}") //по факту DeleteMapping | TODO: refactor for react
     private String delete_admin(@PathVariable int id) {
         adminService.delete(id);
         return "redirect:/admin/sign_up";
     }
 
-    @DeleteMapping("/delete_instrument/{id}") //по факту DeleteMapping // TODO: refactor for react
-    private ResponseEntity<Void> delete_instrument(@PathVariable Long id) {
+    @DeleteMapping("/delete_instrument/{id}")
+    private ResponseEntity<Long> delete_instrument(@PathVariable Long id) {
         instrumentService.delete(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(id);
     }
 
-    @GetMapping("/edit_instrument/{id}")  // done for react
+    @GetMapping("/edit_instrument/{id}")
     public List<InstrumentEntity> getEditInstrument(@PathVariable Long id) {
         List<InstrumentEntity> instrument = new ArrayList<>();
         instrument.add(instrumentService.findById(id));

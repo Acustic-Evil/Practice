@@ -1,21 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import AdminInstrumentsForm from './AdminInstrumentsForm';
 import AdminInstrumentTable from './AdminInstrumentsTable';
-import axios from "axios";
-import baseUrl from "../../base-url";
 
 function AdminMainComponent() {
-    const [instruments, setInstruments] = useState([]);
-
-    useEffect(() => {
-        axios.get(baseUrl + '/admin/main')
-            .then(response => {
-                setInstruments(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }, []);
 
     return (
         <>

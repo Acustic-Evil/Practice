@@ -4,10 +4,10 @@ import baseUrl from "../../base-url";
 
 function AdminInstrumentsForm() {
 
-    const [instrument_name, setInstrument_name] = useState('');
-    const [num_of_strings, setNum_of_strings] = useState('');
-    const [factory_name, setFactory_name] = useState('');
-    const [factory_number, setFactory_number] = useState('');
+    let [instrument_name, setInstrument_name] = useState('');
+    let [num_of_strings, setNum_of_strings] = useState('');
+    let [factory_name, setFactory_name] = useState('');
+    let [factory_number, setFactory_number] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
