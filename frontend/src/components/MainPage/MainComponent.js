@@ -34,11 +34,10 @@ function MainComponent() {
                     <h2>Select an Instrument and Chord</h2>
                     <div className={styles.selectContainer}>
                         <label htmlFor="instrument"></label>
-                        <select>
+                        <select id="instrument">
                             {instruments.map(
                                 instrument =>
-                                    <option id="instrument" key={instrument.id}
-                                            value={instrument.instrument_name}>{instrument.instrument_name}</option>
+                                    <option value={instrument.instrument_name}>{instrument.instrument_name}</option>
                             )}
                         </select>
                         <label htmlFor="chord"></label>
@@ -74,6 +73,7 @@ function playSound() {
     console.log(instrument);
 
     const chord = document.getElementById('chord').value;
+    console.log(chord);
 
     if (!instrument || !chord) {
         alert('Please select an instrument and a chord');

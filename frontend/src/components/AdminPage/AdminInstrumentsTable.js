@@ -58,11 +58,11 @@ function AdminInstrumentsTable( ) {
         backend.Admin.submitNewInstrument(data)
             .then(response => {
                 console.log(response);
-                // fetchInstruments();
+                fetchInstruments();
             })
             .catch(error => {
                 console.log(error);
-                fetchInstruments();
+                
             });
 
     }

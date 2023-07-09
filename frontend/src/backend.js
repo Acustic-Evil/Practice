@@ -2,16 +2,16 @@ import axios from "axios";
 import baseUrl from "./base-url";
 
 const validateStatus = status => (status >= 200 && status <= 300) || [500].includes(status);
+
 export default {
     Admin: {
         submitNewInstrument: async (data) => {
-            let response= await axios.post(baseUrl + '/admin/add_new_instrument', data, { validateStatus })
-                .then(response => {
-                    console.log(response);
-                })
-                .catch(error => {
-                    console.log(error);
-                })
+            let response= await axios.post(baseUrl + '/admin/add_new_instrument', 
+            data,
+            {  
+                validateStatus 
+            });
+
             return response.data;
         },
         getInstruments: async() => {
