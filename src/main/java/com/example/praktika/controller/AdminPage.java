@@ -45,7 +45,7 @@ public class AdminPage {
         else {return "redirect:/admin/sign_up";}
     }
 
-    /*@PostMapping("/add_new_instrument") // TODO: refactor for react
+    /*@PostMapping("/add_new_instrument")
     public String addNewInstrument(@RequestParam(value = "instrument_name") String instrument_name,
                                    @RequestParam(value = "num_of_strings") Integer num_of_strings,
                                    @RequestParam(value = "factory_name") String factory_name,
@@ -64,11 +64,11 @@ public class AdminPage {
         return ResponseEntity.ok(createNewInstrument);
     }
 
-    @GetMapping("/add_new_instrument")
+    /*@GetMapping("/add_new_instrument")
     public ResponseEntity<List<InstrumentEntity>> getInstruments(){
         List<InstrumentEntity> instruments = instrumentService.findAllInstruments();
         return ResponseEntity.ok(instruments);
-    }
+    }*/
 
     @GetMapping("/delete_admin/{id}") //по факту DeleteMapping | TODO: refactor for react
     private String delete_admin(@PathVariable int id) {
@@ -89,14 +89,8 @@ public class AdminPage {
         return instrument;
     }
 
-    @PostMapping("/edit_instrument/{id}") // TODO: refactor for react
-    public String editInstrument(@PathVariable Long id,
-                                 @RequestParam(value = "instrument_name") String instrument_name,
-                                 @RequestParam(value = "num_of_strings") Integer num_of_strings,
-                                 @RequestParam(value = "factory_name") String factory_name,
-                                 @RequestParam(value = "factory_number") String factory_number) {
-        InstrumentEntity instrument = new InstrumentEntity(id, instrument_name, num_of_strings, factory_number, factory_name);
-        instrumentService.update(instrument);
-        return "redirect:/admin";
+    @PostMapping("/edit_instrument/{id}")
+    public ResponseEntity<InstrumentEntity> editInstrument(@RequestBody InstrumentEntity instrument) {
+        return ResponseEntity.ok(instrumentService.update(instrument));
     }
 }
