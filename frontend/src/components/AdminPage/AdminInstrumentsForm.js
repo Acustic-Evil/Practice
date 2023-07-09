@@ -1,8 +1,8 @@
-import axios from "axios";
+/*
 import React, {useState} from "react";
-import baseUrl from "../../base-url";
+import backend from "../../backend";
 
-function AdminInstrumentsForm() {
+function AdminInstrumentsForm({ onInstrumentAdded }) {
 
     let [instrument_name, setInstrument_name] = useState('');
     let [num_of_strings, setNum_of_strings] = useState('');
@@ -17,9 +17,10 @@ function AdminInstrumentsForm() {
             factory_name: factory_name,
             factory_number: factory_number
         };
-        axios.post(baseUrl + '/admin/add_new_instrument', data)
+        backend.Admin.submitNewInstrument(data)
             .then(response => {
                 console.log(response);
+                onInstrumentAdded(response);
             })
             .catch(error => {
                 console.log(error);
@@ -76,4 +77,4 @@ function AdminInstrumentsForm() {
     )
 }
 
-export default AdminInstrumentsForm;
+export default AdminInstrumentsForm;*/

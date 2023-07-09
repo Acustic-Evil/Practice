@@ -1,38 +1,36 @@
 import React, {useState, useEffect} from 'react'
 import styles from './index.css'
-import MainService from "./services/MainService";
+import backend from "../../backend";
 
 function MainComponent() {
-    const [instruments, setInstruments] = useState([])
+    const [instruments, setInstruments] = useState([]);
 
     useEffect(() => {
-        getInstruments()
-    }, [])
+        const fetchInstrumentData = async () => {
+            const data = await backend.Main.fetchInstruments();
+            setInstruments(data);
+        };
 
-    const getInstruments = () => {
-        MainService.getInstruments().then((response) => {
-            setInstruments(response.data)
-            console.log(response.data);
-        });
-    };
+        fetchInstrumentData();
+    }, []);
+
 
     return (
-        <><header>
-            <h1>Bowed Musical Instruments</h1>
-            <div>
-                <a href="/admin">
-                    <button>Admin</button>
-                </a>
-                {/*<a href="/logout">
+        <>
+            <header>
+                <h1>Bowed Musical Instruments</h1>
+                <div>
+                    <a href="/admin">
+                        <button>Admin</button>
+                    </a>
+                    {/*<a href="/logout">
                         <button>Log out</button>
                     </a>*/}
-            </div>
-        </header>
+                </div>
+            </header>
             <main>
                 <p>Welcome to our website! Please select an instrument and a chord to listen to.</p>
                 <section>
-
-
                     <h2>Select an Instrument and Chord</h2>
                     <div className={styles.selectContainer}>
                         <label htmlFor="instrument"></label>
@@ -62,9 +60,9 @@ function MainComponent() {
                 </section>
                 <section>
                     <h2>Photo Gallery</h2>
-                    {/*<div className="gallery-container">
-                        <img src="/Violin.webp" alt="Gallery Image 1"/>
-                    </div>*/}
+                    {<div className="gallery-container">
+                        <img src={require('.//Violin.webp')} alt="Gallery Image 1"/>
+                    </div>}
                 </section>
             </main>
         </>
@@ -73,6 +71,8 @@ function MainComponent() {
 
 function playSound() {
     const instrument = document.getElementById('instrument').value;
+    console.log(instrument);
+
     const chord = document.getElementById('chord').value;
 
     if (!instrument || !chord) {
@@ -88,5 +88,6 @@ function playSound() {
         alertBox.style.opacity = 0;
     }, 3000);
 }
+
 
 export default MainComponent

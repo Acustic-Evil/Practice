@@ -1,49 +1,117 @@
-import React, {Component, useEffect, useState} from "react";
-import MainService from "../MainPage/services/MainService";
-import baseUrl from "../../base-url";
-import axios from "axios";
+import React, {useEffect, useState} from "react";
+// import MainService from "../MainPage/services/MainService";
+
 import backend from "../../backend";
+import {wait} from "@testing-library/user-event/dist/utils";
 
-function AdminInstrumentsTable() {
-     const [instruments, setInstruments] = useState([])
+function AdminInstrumentsTable( ) {
 
-     /*useEffect(() => {
-         getInstruments()
-         /!*fetch(baseUrl + '/admin/main')
-             .then(response => {
-                 if(!response.ok){
-                     throw new Error('Failed to fetch instruments');
-                 }
-                 return response.json();
-             })
-             .then(data => {
-                 setInstruments(data);
-             })
-             .catch(error => {
-                 console.error(error);
-             });*!/
-     }, []);
+    const [instruments, setInstruments] = useState([])
 
-     const getInstruments = () => {
-         MainService.getInstruments().then((response) => {
-             setInstruments(response.data)
-             console.log(response.data);
-         });
-     };*/
-    /*backend.Admin.getInstruments().then(r => );*/
+    let [instrument_name, setInstrument_name] = useState('');
+    let [num_of_strings, setNum_of_strings] = useState('');
+    let [factory_name, setFactory_name] = useState('');
+    let [factory_number, setFactory_number] = useState('');
 
-     const handleDelete = id => {
-         axios.delete(baseUrl + `/admin/delete_instrument/${id}`, id)
-             .then(response => {
-                 console.log(response);
-             })
-             .catch(error => {
-                 console.log(error);
-             });
-     };
 
+    useEffect(() => {
+        /*backend.Admin.getInstruments()
+            .then(data => {
+                setInstruments(data);
+            })
+            .catch(error => {
+                console.error(error);
+            });*/
+        fetchInstruments();
+    }, []);
+
+
+    const fetchInstruments = () => {
+        backend.Admin.getInstruments()
+            .then(data => {
+                setInstruments(data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    };
+    const handleDelete = id => {
+        backend.Admin.deleteInstrument(id)
+            .then(response => {
+                console.log(response);
+                fetchInstruments();
+                // setInstruments(prevInstruments => prevInstruments.filter(instrument => instrument.id !== id));
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const data = {
+            instrument_name: instrument_name,
+            num_of_strings: parseInt(num_of_strings),
+            factory_name: factory_name,
+            factory_number: factory_number
+        };
+        backend.Admin.submitNewInstrument(data)
+            .then(response => {
+                console.log(response);
+                // fetchInstruments();
+            })
+            .catch(error => {
+                console.log(error);
+                fetchInstruments();
+            });
+
+    }
+
+    const handleInstrumentNameChange = (event) => {
+        setInstrument_name(event.target.value);
+    }
+
+
+    const handleNumberOfStringsChange = (event) => {
+        setNum_of_strings(event.target.value);
+    }
+
+    const handleFactoryNameChange = (event) => {
+        setFactory_name(event.target.value);
+    }
+
+    const handleFactoryNumberChange = (event) => {
+        setFactory_number(event.target.value);
+    }
     return (
         <>
+            <section>
+                <h2>Add Instrument</h2>
+                <form onSubmit={handleSubmit}>
+                    <label>Instrument name:
+                        <input type="text" value={instrument_name}
+                               onInput={handleInstrumentNameChange}
+                               required/>
+                    </label>
+                    <label>Chord name:
+                        <input type="text" required/>
+                    </label>
+                    <label>Number of strings:
+                        <input type="number" value={num_of_strings}
+                               onInput={handleNumberOfStringsChange}
+                               required/>
+                    </label>
+                    <label>Factory name:
+                        <input type="text" value={factory_name}
+                               onInput={handleFactoryNameChange} required/>
+                    </label>
+                    <label>Factory number:
+                        <input type="text" value={factory_number}
+                               onInput={handleFactoryNumberChange}
+                               required/></label>
+                    <button type="submit">Add</button>
+                </form>
+            </section>
             <section>
                 <h2>Instruments</h2>
                 <table>

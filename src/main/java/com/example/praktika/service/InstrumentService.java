@@ -30,7 +30,7 @@ public class InstrumentService implements IInstrumentService {
     @Override
     public InstrumentEntity saveInstrument(InstrumentEntity instrument) {
         if (instrument.getInstrument_name() == null) {
-            throw new IllegalArgumentException("One ore more fields are null");
+            throw new IllegalArgumentException("One or more fields are null");
         }
         return instrumentRepository.save(instrument);
     }

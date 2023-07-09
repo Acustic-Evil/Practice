@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import AdminInstrumentsForm from './AdminInstrumentsForm';
 import AdminInstrumentTable from './AdminInstrumentsTable';
 
@@ -21,8 +21,8 @@ function AdminMainComponent() {
                 </div>
             </header>
             <main>
-                <AdminInstrumentsForm />
-                <AdminInstrumentTable />
+                {/*<AdminInstrumentsForm onInstrumentAdded={handleInstrumentAdded} />*/}
+                <AdminInstrumentTable/>
             </main>
         </>
     );
