@@ -1,8 +1,5 @@
 import React, {useEffect, useState} from "react";
-// import MainService from "../MainPage/services/MainService";
-
 import backend from "../../backend";
-import {wait} from "@testing-library/user-event/dist/utils";
 
 function AdminInstrumentsTable( ) {
 
@@ -15,13 +12,6 @@ function AdminInstrumentsTable( ) {
 
 
     useEffect(() => {
-        /*backend.Admin.getInstruments()
-            .then(data => {
-                setInstruments(data);
-            })
-            .catch(error => {
-                console.error(error);
-            });*/
         fetchInstruments();
     }, []);
 
@@ -40,7 +30,6 @@ function AdminInstrumentsTable( ) {
             .then(response => {
                 console.log(response);
                 fetchInstruments();
-                // setInstruments(prevInstruments => prevInstruments.filter(instrument => instrument.id !== id));
             })
             .catch(error => {
                 console.log(error);
