@@ -1,6 +1,7 @@
+/*
 import React, {useState, useEffect} from 'react';
 import styles from './sign_up.css';
-import SignUpService from "./services/SignUpService";
+// import SignUpService from "./services/SignUpService";
 
 
 function SignUpComponent() {
@@ -29,9 +30,9 @@ function SignUpComponent() {
                     <a href="/">
                         <button> Main page</button>
                     </a>
-                    {/*<a href="/logout">
+                    {/!*<a href="/logout">
                         <button>Log out</button>
-                    </a>*/}
+                    </a>*!/}
                 </div>
             </header>
             <div className="intro"></div>
@@ -74,4 +75,4 @@ function SignUpComponent() {
     )
 }
 
-export default SignUpComponent
+export default SignUpComponent*/

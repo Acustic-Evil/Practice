@@ -1,14 +1,18 @@
 import React, {useEffect, useState} from "react";
 import backend from "../../backend";
+import {useNavigate} from "react-router-dom";
+import styles from "./admin.css"
 
 function AdminInstrumentsTable( ) {
 
-    const [instruments, setInstruments] = useState([])
+    const [instruments, setInstruments] = useState([]);
+    const navigate = useNavigate();
 
     let [instrument_name, setInstrument_name] = useState('');
     let [num_of_strings, setNum_of_strings] = useState('');
     let [factory_name, setFactory_name] = useState('');
     let [factory_number, setFactory_number] = useState('');
+
 
 
     useEffect(() => {
@@ -25,6 +29,7 @@ function AdminInstrumentsTable( ) {
                 console.error(error);
             });
     };
+
     const handleDelete = id => {
         backend.Admin.deleteInstrument(id)
             .then(response => {
@@ -53,25 +58,27 @@ function AdminInstrumentsTable( ) {
                 console.log(error);
                 
             });
+    };
 
+    const handleUpdate = id => {
+        navigate(`/admin/edit_instrument/${id}`)
     }
 
     const handleInstrumentNameChange = (event) => {
         setInstrument_name(event.target.value);
-    }
-
+    };
 
     const handleNumberOfStringsChange = (event) => {
         setNum_of_strings(event.target.value);
-    }
+    };
 
     const handleFactoryNameChange = (event) => {
         setFactory_name(event.target.value);
-    }
+    };
 
     const handleFactoryNumberChange = (event) => {
         setFactory_number(event.target.value);
-    }
+    };
     return (
         <>
             <section>
@@ -126,7 +133,7 @@ function AdminInstrumentsTable( ) {
                                     <td>{instrument.factory_number}</td>
                                     <td>
                                         <a>
-                                            <button>✏️</button>
+                                            <button onClick={() => handleUpdate(instrument.id)}>✏️</button>
                                         </a>
                                         <a>
                                             <button onClick={() => handleDelete(instrument.id)}>❌</button>

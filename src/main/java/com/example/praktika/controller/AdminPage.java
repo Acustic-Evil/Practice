@@ -45,30 +45,11 @@ public class AdminPage {
         else {return "redirect:/admin/sign_up";}
     }
 
-    /*@PostMapping("/add_new_instrument")
-    public String addNewInstrument(@RequestParam(value = "instrument_name") String instrument_name,
-                                   @RequestParam(value = "num_of_strings") Integer num_of_strings,
-                                   @RequestParam(value = "factory_name") String factory_name,
-                                   @RequestParam(value = "factory_number") String factory_number) {
-        if(instrumentService.addNewInstrument(instrument_name, num_of_strings, factory_number, factory_name)) {
-            return "redirect:/admin";
-        } else {
-            return "redirect:/admin";
-        }
-
-    }*/
-
     @PostMapping("/add_new_instrument")
     public ResponseEntity<InstrumentEntity> addNewInstrument(@RequestBody InstrumentEntity instrument) {
         InstrumentEntity createNewInstrument = instrumentService.addNewInstrument(instrument);
         return ResponseEntity.ok(createNewInstrument);
     }
-
-    /*@GetMapping("/add_new_instrument")
-    public ResponseEntity<List<InstrumentEntity>> getInstruments(){
-        List<InstrumentEntity> instruments = instrumentService.findAllInstruments();
-        return ResponseEntity.ok(instruments);
-    }*/
 
     @GetMapping("/delete_admin/{id}") //по факту DeleteMapping | TODO: refactor for react
     private String delete_admin(@PathVariable int id) {
@@ -82,14 +63,12 @@ public class AdminPage {
         return ResponseEntity.ok(id);
     }
 
-    @GetMapping("/edit_instrument/{id}")
-    public List<InstrumentEntity> getEditInstrument(@PathVariable Long id) {
-        List<InstrumentEntity> instrument = new ArrayList<>();
-        instrument.add(instrumentService.findById(id));
-        return instrument;
+    @GetMapping("/get_instrument/{id}")
+    public InstrumentEntity getEditInstrument(@PathVariable Long id) {
+        return instrumentService.findById(id);
     }
 
-    @PostMapping("/edit_instrument/{id}")
+    @PostMapping("/edit_instrument")
     public ResponseEntity<InstrumentEntity> editInstrument(@RequestBody InstrumentEntity instrument) {
         return ResponseEntity.ok(instrumentService.update(instrument));
     }

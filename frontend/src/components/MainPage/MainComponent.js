@@ -32,7 +32,7 @@ function MainComponent() {
                 <p>Welcome to our website! Please select an instrument and a chord to listen to.</p>
                 <section>
                     <h2>Select an Instrument and Chord</h2>
-                    <div className={styles.selectContainer}>
+                    <div className= "selectContainer">
                         <label htmlFor="instrument"></label>
                         <select id="instrument">
                             {instruments.map(
@@ -59,7 +59,7 @@ function MainComponent() {
                 </section>
                 <section>
                     <h2>Photo Gallery</h2>
-                    {<div className="gallery-container">
+                    {<div className= "gallery-container">
                         <img src={require('.//Violin.webp')} alt="Gallery Image 1"/>
                     </div>}
                 </section>

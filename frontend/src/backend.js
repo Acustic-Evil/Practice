@@ -1,6 +1,7 @@
 import axios from "axios";
 import baseUrl from "./base-url";
 
+
 const validateStatus = status => (status >= 200 && status <= 300) || [500].includes(status);
 
 export default {
@@ -26,6 +27,21 @@ export default {
             })
             return response.data;
 
+        },
+        updateInstrument: async (data) => {
+            let response = await axios.post(baseUrl + `/admin/edit_instrument`,
+                data,
+                {
+                    validateStatus
+                });
+            return response.data;
+        },
+        getInstrumentById: async (id) => {
+            let response = await axios.get(baseUrl + `/admin/get_instrument/${id}`,
+                {
+                    validateStatus
+                });
+            return response.data;
         }
     },
     Main: {

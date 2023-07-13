@@ -2,7 +2,7 @@ import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import MainComponent from "./components/MainPage/MainComponent";
 import AdminMainComponent from "./components/AdminPage/AdminMainComponent";
-import SignUpComponent from "./components/SignUpAdminPage/SignUpComponent";
+import InstrumentEdit from "./components/AdminPage/InstrumentEdit";
 
 function App() {
     return (
@@ -10,7 +10,7 @@ function App() {
             <Routes>
                 <Route path='/' element={<MainComponent/>}/>
                 <Route path='/admin' element={<AdminMainComponent/>}/>
-                <Route path='/admin/sign_up' element={<SignUpComponent/>}/>
+                <Route path='/admin/edit_instrument/:id' element={<InstrumentEdit/>}/>
             </Routes>
         </BrowserRouter>
     );
